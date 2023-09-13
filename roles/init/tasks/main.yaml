@@ -18,3 +18,7 @@
   ansible.posix.authorized_key:
     user: roman
     key: https://github.com/romankuchin.keys
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    cache_valid_time: 86400
