@@ -2,6 +2,12 @@
   ansible.builtin.apt:
     name: nginx
 
+- name: Configure nginx frontend service
+  ansible.builtin.copy:
+    src: default
+    dest: /etc/nginx/sites-enabled/default
+  notify: Restart nginx
+
 - name: Start nginx service
   ansible.builtin.service:
     name: nginx

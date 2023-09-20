@@ -12,7 +12,7 @@
     content: "[uwsgi]\n
       chdir = /opt/agama\n
       module = agama:app\n
-      env = AGAMA_DATABASE_URI=/opt/agama/db.sqlite3\n
+      env = AGAMA_DATABASE_URI=sqlite:////opt/agama/db.sqlite3\n
       plugins = python3\n
       socket = localhost:5000\n
       uid = agama\n"
