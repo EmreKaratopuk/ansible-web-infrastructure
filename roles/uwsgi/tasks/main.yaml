@@ -7,15 +7,9 @@
     name: uwsgi-plugin-python3
 
 - name: Create uwsgi config file
-  ansible.builtin.copy:
+  ansible.builtin.template:
+    src: agama.ini.j2 
     dest: /etc/uwsgi/apps-enabled/agama.ini
-    content: "[uwsgi]\n
-      chdir = /opt/agama\n
-      module = agama:app\n
-      env = AGAMA_DATABASE_URI=sqlite:////opt/agama/db.sqlite3\n
-      plugins = python3\n
-      socket = localhost:5000\n
-      uid = agama\n"
   notify: Restart uwsgi
 
 - name: Start uwsgi service
