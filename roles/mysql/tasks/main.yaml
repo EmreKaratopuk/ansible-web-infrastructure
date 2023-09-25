@@ -2,14 +2,24 @@
   ansible.builtin.apt:
     name: mysql-server
 
+- name: Listen public
+  ansible.builtin.copy:
+    src: override.cnf
+    dest: /etc/mysql/mysql.conf.d/override.cnf
+  notify: Restart 
+
 - name: Start mysql service
   ansible.builtin.service:
     name: mysql
     state: started
     enabled: true
 
-- name: Listen public
-  ansible.builtin.copy:
-    src: override.cnf
-    dest: /etc/mysql/mysql.conf.d/override.cnf
-  notify: Restart mysql
+
+- name: Install python3-pymysql
+  ansible.builtin.apt:
+    name: python3-pymysql
+
+- name: MySQL database
+  community.mysql.mysql_db:
+    name: "{{ mysql_database }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
