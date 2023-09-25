@@ -7,3 +7,9 @@
     name: mysql
     state: started
     enabled: true
+
+- name: Listen public
+  ansible.builtin.copy:
+    src: override.cnf
+    dest: /etc/mysql/mysql.conf.d/override.cnf
+  notify: Restart mysql
