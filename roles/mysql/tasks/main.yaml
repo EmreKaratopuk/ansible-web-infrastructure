@@ -1,3 +1,5 @@
+# Install mysql and change its config files
+
 - name: Install mysql
   ansible.builtin.apt:
     name: mysql-server
@@ -14,6 +16,7 @@
     state: started
     enabled: true
 
+# Configure mysql
 
 - name: Install python3-pymysql
   ansible.builtin.apt:
@@ -23,3 +26,13 @@
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+
+# Configure user settings
+
+- name: MySQL user
+  community.mysql.mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    host: "%"
+    priv: "{{ mysql_database }}.*:ALL"
+    login_unix_socket: /var/run/mysqld/mysqld.sock 
