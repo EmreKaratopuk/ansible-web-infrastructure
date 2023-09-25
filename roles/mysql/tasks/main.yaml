@@ -1,0 +1,9 @@
+- name: Install mysql
+  ansible.builtin.apt:
+    name: mysql-server
+
+- name: Start mysql service
+  ansible.builtin.service:
+    name: mysql
+    state: started
+    enabled: true
