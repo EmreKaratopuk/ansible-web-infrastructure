@@ -1,4 +1,4 @@
-mysql_host: 192.168.42.191
+mysql_host: EmreKaratopuk-2.istikbal.ek
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |

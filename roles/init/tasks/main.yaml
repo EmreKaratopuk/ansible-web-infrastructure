@@ -22,3 +22,16 @@
 - name: Update APT cache
   ansible.builtin.apt:
     cache_valid_time: 86400
+
+
+# Manage DNS settings manually
+
+- name: Stop systemd-resolved
+  service:
+    name: systemd-resolved
+    state: stopped
+
+- name: Change resolve.conf content
+  template:
+    src: resolve.conf.j2
+    dest: /etc/resolv.conf
