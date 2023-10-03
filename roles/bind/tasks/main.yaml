@@ -2,8 +2,18 @@
   apt:
     name: bind9
 
-- name: Configure bind9 options file
+- name: Configure bind9 files
   template:
-    src: named.conf.options.j2
-    dest: /etc/bind/named.conf.options
+    src: named.conf.{{ item }}.j2
+    dest: /etc/bind/named.conf.{{ item }}
+
+  loop:
+    - options
+    - local
+  notify: Restart bind9
+
+- name: Configure master zone
+  template:
+    src: zone.j2
+    dest: /var/lib/bind/db.istikbal.ek
   notify: Restart bind9

@@ -1,0 +1,15 @@
+$TTL	604800
+istikbal.ek.	IN	SOA	vm1.istikbal.ek. alikar.istikbal.ek. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+{% for vm in groups['db_servers'] %}
+istikbal.ek.	IN	NS	{{ vm }}
+{% endfor %}
+
+{% for vm in groups['all'] %}
+{{ vm }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
+{% endfor %}
