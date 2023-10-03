@@ -31,7 +31,7 @@
     name: systemd-resolved
     state: stopped
 
-- name: Change resolve.conf content
+- name: Change resolv.conf content
   template:
-    src: resolve.conf.j2
+    src: resolv.conf.j2
     dest: /etc/resolv.conf
