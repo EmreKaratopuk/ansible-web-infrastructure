@@ -1,3 +1,11 @@
 - name: Install Prometheus
   apt:
     name: prometheus
+
+
+# add prefix web.external-url... to get a correct redirection url from http://.../prometheus
+- name: Adjust Prometheus service
+  template:
+    src: prometheus
+    dest: /etc/default/prometheus
+  notify: Restart Prometheus
