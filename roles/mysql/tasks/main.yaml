@@ -8,7 +8,7 @@
   ansible.builtin.copy:
     src: override.cnf
     dest: /etc/mysql/mysql.conf.d/override.cnf
-  notify: Restart 
+  notify: Restart mysql
 
 - name: Start mysql service
   ansible.builtin.service:
