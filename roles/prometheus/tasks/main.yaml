@@ -9,3 +9,9 @@
     src: prometheus
     dest: /etc/default/prometheus
   notify: Restart Prometheus
+
+- name: Add data source VMs
+  template:
+    src: prometheus.yml
+    dest: /etc/prometheus/prometheus.yml
+  notify: Restart Prometheus
