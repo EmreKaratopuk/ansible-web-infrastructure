@@ -1,0 +1,7 @@
+Average memory usage within past 10 min
+
+100 * (1 - ((avg_over_time(node_memory_MemFree_bytes[10m]) + avg_over_time(node_memory_Cached_bytes[10m]) + avg_over_time(node_memory_Buffers_bytes[10m])) / avg_over_time(node_memory_MemTotal_bytes[10m])))
+
+Average cpu usage within past 10 min
+
+(1 - avg(irate(node_cpu_seconds_total{mode="idle"}[10m])) by (instance)) * 100
