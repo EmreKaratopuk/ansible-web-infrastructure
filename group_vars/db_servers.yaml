@@ -1,4 +1,8 @@
 jobs_list:
+  - name: linux
+    target_port: 9100
+    target_group: all
+
   - name: bind9
     target_port: 9119
     target_group: db_servers

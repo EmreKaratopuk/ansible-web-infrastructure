@@ -2,23 +2,35 @@
   - name: Initial setup
     hosts: all
     roles:
-      - init
+      - role: init
+        tags: init
 
   - name: Database server
     hosts: db_servers
     roles:
-      - prometheus
-      - mysql
-      - bind
+      - role: prometheus
+        tags: pro
+
+      - role: mysql
+        tags: db
+
+      - role: bind
+        tags: bind
 
   - name: Configure DNS settings for both
     hosts: all
     roles:
-      - config-dns
+      - role: config-dns
+        tags: dns
 
   - name: Web server
     hosts: web_servers
     roles:
-      - agama
-      - uwsgi
-      - nginx
+      - role: agama
+        tags: aga
+      
+      - role: uwsgi
+        tags: uw
+
+      - role: nginx
+        tags: ng
