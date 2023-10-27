@@ -13,3 +13,10 @@
     name: nginx
     state: started
     enabled: true
+
+
+# integrate prometheus to nginx
+
+- name: Install prometheus-nginx-exporter
+  apt:
+    name: prometheus-nginx-exporter

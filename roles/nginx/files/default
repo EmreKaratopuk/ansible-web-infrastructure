@@ -11,3 +11,11 @@ server {
 		proxy_pass http://EmreKaratopuk-2:9090;
 	}
 }
+
+server {
+	listen 8080 default_server;
+
+	location = /stub_status {
+		stub_status;
+	}
+}

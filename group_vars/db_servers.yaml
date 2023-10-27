@@ -13,6 +13,10 @@ jobs_list:
     target_port: 9104
     target_group: db_servers
 
+  - name: nginx
+    target_port: 9113
+    target_group: web_servers
+
 
 # MySQL
 
