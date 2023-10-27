@@ -36,3 +36,27 @@
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
     login_unix_socket: /var/run/mysqld/mysqld.sock 
+
+# mysql prometheus integration
+
+- name: Install prometheus-mysqld-exporter
+  apt: 
+    name: prometheus-mysqld-exporter
+
+- name: Create mysql exporter user
+  community.mysql.mysql_user:
+    name: "{{mysql_exporter_user}}"
+    password: "{{mysql_exporter_password}}"
+    host: "%"
+    resource_limits:
+      MAX_USER_CONNECTIONS: 3
+    priv: "*.*:PROCESS/*.*:REPLICATION CLIENT"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify: Restart mysql-exporter
+
+- name: Configure mysql exporter credentials
+  template:
+    src: my.conf.j2
+    dest: /var/lib/prometheus/.my.cnf
+  no_log: true
+  notify: Restart mysql-exporter
