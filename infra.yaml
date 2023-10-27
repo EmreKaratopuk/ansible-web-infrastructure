@@ -17,6 +17,9 @@
       - role: bind
         tags: bind
 
+      - role: grafana
+        tags: gra
+
   - name: Configure DNS settings for both
     hosts: all
     roles:

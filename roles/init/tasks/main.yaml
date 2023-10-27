@@ -23,6 +23,10 @@
   ansible.builtin.apt:
     cache_valid_time: 86400
 
+- name: Download certificates
+  apt:
+    name: ca-certificates=20230311ubuntu0.20.04.1
+    update_cache: true
 
 # Install Prometheus Node Exporters
 
