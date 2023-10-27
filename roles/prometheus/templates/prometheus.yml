@@ -50,5 +50,15 @@ scrape_configs:
         {% for vm in groups['all'] %}
 
         - {{vm}}:9100
-
         {%endfor%}
+
+  {% for job in jobs_list %}
+
+  - job_name: {{job['name']}}
+    static_configs:
+      - targets:
+        {%for target in groups[job['target_group']]%}
+
+        - {{target}}:{{job['target_port']}}
+        {%endfor%}
+  {%endfor%}

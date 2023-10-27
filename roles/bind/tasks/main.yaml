@@ -17,3 +17,8 @@
     src: zone.j2
     dest: /var/lib/bind/db.istikbal.ek
   notify: Restart bind9
+
+# Export bind logs to prometheus
+- name: Install prometheus-bind-exporter
+  apt:
+    name: prometheus-bind-exporter

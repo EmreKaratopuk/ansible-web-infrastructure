@@ -1,0 +1,4 @@
+jobs_list:
+  - name: bind9
+    target_port: 9119
+    target_group: db_servers
