@@ -11,6 +11,11 @@
       - mysql
       - bind
 
+  - name: Configure DNS settings for both
+    hosts: all
+    roles:
+      - config-dns
+
   - name: Web server
     hosts: web_servers
     roles:

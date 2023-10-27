@@ -24,18 +24,6 @@
     cache_valid_time: 86400
 
 
-# Manage DNS settings manually
-
-- name: Stop systemd-resolved
-  service:
-    name: systemd-resolved
-    state: stopped
-
-- name: Change resolv.conf content
-  template:
-    src: resolv.conf.j2
-    dest: /etc/resolv.conf
-
 # Install Prometheus Node Exporters
 
 - name: Install prometheus node exporter
