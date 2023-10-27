@@ -1,3 +1,4 @@
+
 - name: Create /etc/apt/keyrings directory
   file:
     path: /etc/apt/keyrings
@@ -22,3 +23,13 @@
     name: grafana-server
     state: started
     enabled: true
+
+- name: Configure reverse proxy
+  template:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
+  notify: Restart grafana
+
+# - name: view hostvars
+#   debug:
+#     var: hostvars['EmreKaratopuk-1']['ansible_port'] | int + 58

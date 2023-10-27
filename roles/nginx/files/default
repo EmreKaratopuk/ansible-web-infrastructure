@@ -10,6 +10,11 @@ server {
 	location /prometheus {
 		proxy_pass http://EmreKaratopuk-2:9090;
 	}
+
+	location /grafana {
+		proxy_pass http://EmreKaratopuk-2:3000;
+		proxy_set_header Host $http_host;
+	}
 }
 
 server {
