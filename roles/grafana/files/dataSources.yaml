@@ -1,0 +1,12 @@
+# # config file version
+apiVersion: 1
+
+datasources:
+- name: Prometheus
+  type: prometheus
+  access: proxy
+  orgId: 1
+  url: http://EmreKaratopuk-2:9090/prometheus/
+  version: 1
+  editable: false
+

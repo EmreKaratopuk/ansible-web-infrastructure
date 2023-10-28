@@ -1,4 +1,3 @@
-
 - name: Create /etc/apt/keyrings directory
   file:
     path: /etc/apt/keyrings
@@ -29,6 +28,29 @@
     src: grafana.ini
     dest: /etc/grafana/grafana.ini
   notify: Restart grafana
+
+
+# Configure grafana by importing previous data
+
+- name: Add prometheus as data source
+  copy:
+    src: dataSources.yaml
+    dest: /etc/grafana/provisioning/datasources/dataSource.yaml
+
+- name: Configure dashboards settings
+  copy:
+    src: dashboards.yaml
+    dest: /etc/grafana/provisioning/dashboards/dashboards.yaml
+
+- name: Create dashboards directory to import dashboards
+  file:
+    path: /var/lib/grafana/dashboards/
+    state: directory
+
+- name: Import main dashboard configurations
+  copy:
+    src: main.json
+    dest: /var/lib/grafana/dashboards/main.json
 
 # - name: view hostvars
 #   debug:
