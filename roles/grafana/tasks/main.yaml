@@ -36,11 +36,13 @@
   copy:
     src: dataSources.yaml
     dest: /etc/grafana/provisioning/datasources/dataSource.yaml
+  notify: Restart grafana
 
 - name: Configure dashboards settings
   copy:
     src: dashboards.yaml
     dest: /etc/grafana/provisioning/dashboards/dashboards.yaml
+  notify: Restart grafana
 
 - name: Create dashboards directory to import dashboards
   file:
@@ -51,6 +53,7 @@
   copy:
     src: main.json
     dest: /var/lib/grafana/dashboards/main.json
+  notify: Restart grafana
 
 # - name: view hostvars
 #   debug:
