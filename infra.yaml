@@ -20,6 +20,9 @@
     - role: influxdb
       tags: in
 
+    - role: pinger
+      tags: ping
+
     - role: grafana
       tags: gra
 
