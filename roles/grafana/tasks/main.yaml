@@ -49,10 +49,16 @@
     path: /var/lib/grafana/dashboards/
     state: directory
 
-- name: Import main dashboard configurations
+- name: Import main dashboard
   copy:
     src: main.json
     dest: /var/lib/grafana/dashboards/main.json
+  notify: Restart grafana
+
+- name: Import syslog dashboard
+  copy:
+    src: syslog.json
+    dest: /var/lib/grafana/dashboards/syslog.json
   notify: Restart grafana
 
 # - name: view hostvars

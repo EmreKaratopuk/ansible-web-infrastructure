@@ -10,10 +10,18 @@ datasources:
   version: 1
   editable: false
 
-- name: Influxdb
+- name: InfluxDB-pinger
   type: influxdb
   access: proxy
   url: http://localhost:8086
   jsonData:
     dbName: pingResults
+    httpMode: GET
+
+- name: InfluxDB-telegraf
+  type: influxdb
+  access: proxy
+  url: http://localhost:8086
+  jsonData:
+    dbName: telegraf
     httpMode: GET
