@@ -33,3 +33,10 @@
 - name: Install prometheus node exporter
   apt:
     name: prometheus-node-exporter
+
+
+- name: Modify rsyslog conf file
+  copy:
+    src: rsyslog-tel.conf
+    dest: /etc/rsyslog.d/tel.conf
+  notify: Restart rsyslog
