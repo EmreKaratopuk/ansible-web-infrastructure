@@ -32,7 +32,7 @@
 
 # Configure grafana by importing previous data
 
-- name: Add prometheus as data source
+- name: Add data sources
   copy:
     src: dataSources.yaml
     dest: /etc/grafana/provisioning/datasources/dataSource.yaml

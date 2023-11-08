@@ -10,3 +10,10 @@ datasources:
   version: 1
   editable: false
 
+- name: Influxdb
+  type: influxdb
+  access: proxy
+  url: http://localhost:8086
+  jsonData:
+    dbName: pingResults
+    httpMode: GET
