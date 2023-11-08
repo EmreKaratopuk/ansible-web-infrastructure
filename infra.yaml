@@ -17,6 +17,9 @@
     - role: bind
       tags: bind
 
+    - role: influxdb
+      tags: in
+
     - role: grafana
       tags: gra
 
