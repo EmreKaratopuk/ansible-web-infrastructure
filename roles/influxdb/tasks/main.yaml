@@ -12,3 +12,29 @@
     name: influxdb
     state: started
     enabled: true
+
+# telegraf
+
+- name: Get telegraf key
+  apt_key:
+    url: https://repos.influxdata.com/influxdata-archive_compat.key
+    keyring: /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg
+
+- name: Get telegraf source with apt
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main"
+    filename: /etc/apt/sources.list.d/influxdata.list
+    update_cache: true
+
+- name: Install telegraf from source
+  apt:
+    name: telegraf
+
+# configure telegraf
+
+- name: Configure telegraf
+  copy: 
+    src: telegraf.conf 
+    dest: /etc/telegraf/telegraf.conf
+  notify: Restart telegraf
+  
