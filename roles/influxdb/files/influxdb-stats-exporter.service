@@ -1,0 +1,9 @@
+[Unit]
+After=network-online.target
+
+[Service]
+User=prometheus
+ExecStart=/usr/local/bin/influx_stats_exporter
+
+[Install]
+WantedBy=multi-user.target

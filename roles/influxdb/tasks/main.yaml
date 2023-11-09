@@ -38,3 +38,27 @@
     dest: /etc/telegraf/telegraf.conf
   notify: Restart telegraf
   
+# monitor influxdb
+
+- name: Download influxdb exporter
+  get_url:
+    mode: 0770
+    owner: prometheus
+    group: prometheus
+    url: https://github.com/carlpett/influxdb_stats_exporter/releases/download/v0.1.1/influx_stats_exporter_linux_amd64
+    dest: /usr/local/bin/influx_stats_exporter
+
+- name: Create influxdb-exporter service
+  copy:
+    src: influxdb-stats-exporter.service
+    dest: /etc/systemd/system/prometheus-influxdb-stats-exporter.service
+
+- name: Restart systemctl daemon
+  systemd:
+   daemon_reload: true
+
+- name: Start prometheus-influxdb-stats-exporter
+  service:
+    name: prometheus-influxdb-stats-exporter.service
+    state: started
+    enabled: true
