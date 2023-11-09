@@ -7,6 +7,12 @@
   apt:
    deb: "/tmp/influxdb_1.8.10_amd64.deb"
 
+- name: Configure influxdb
+  copy:
+    src: influxdb.conf
+    dest: /etc/influxdb/influxdb.conf
+  notify: Restart influxdb
+
 - name: Activate influxdb
   service:
     name: influxdb
