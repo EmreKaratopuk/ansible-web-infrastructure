@@ -1,4 +1,5 @@
 [Unit]
+Description=A monitoring service for network health
 After=network-online.target
 
 [Service]

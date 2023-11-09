@@ -1,4 +1,5 @@
 [Unit]
+Description=Send InfluxDB logs to Prometheus
 After=network-online.target
 
 [Service]
