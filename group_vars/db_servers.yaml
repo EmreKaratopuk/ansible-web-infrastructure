@@ -17,6 +17,10 @@ jobs_list:
     target_port: 9113
     target_group: web_servers
 
+  - name: influxdb
+    target_port: 9424
+    target_group: db_servers
+
 
 # MySQL
 
