@@ -40,3 +40,15 @@
     src: rsyslog-tel.conf
     dest: /etc/rsyslog.d/tel.conf
   notify: Restart rsyslog
+
+- name: Create backup user
+  user:
+    name: backup
+    home: /home/backup
+    generate_ssh_key: true
+    ssh_key_file: /home/backup/.ssh/id_rsa
+
+- name: Add backup server to known hosts
+  template:
+    src: known_hosts
+    dest: /home/backup/.ssh/known_hosts
