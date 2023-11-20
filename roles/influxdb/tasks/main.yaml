@@ -69,6 +69,8 @@
     state: started
     enabled: true
 
+# configure backup process for influxdb
+
 - name: Create backup directory for influxdb
   file:
     path: /home/backup/influxdb
