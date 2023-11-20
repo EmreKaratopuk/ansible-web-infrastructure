@@ -69,7 +69,7 @@
     state: directory
     owner: backup
     group: backup
-    mode: 0660
+    mode: 0777
 
 - name: Create mysql backup user
   community.mysql.mysql_user:
@@ -88,3 +88,8 @@
     owner: backup
     group: backup
     mode: 0600
+
+- name: Create scheduled backup task with cron
+  copy:
+    src: cron-mysql-backup
+    dest: /etc/cron.d/mysql-backup

@@ -52,6 +52,9 @@
   template:
     src: known_hosts
     dest: /home/backup/.ssh/known_hosts
+    owner: backup
+    group: backup
+    mode: 0600
 
 # set up backup
 
