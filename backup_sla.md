@@ -1,8 +1,8 @@
-# Backup Policy for Ansible Repository
+# Backup Policy
 
 ## Introduction
 
-This document serves as the backup policy for the Ansible repository, which includes various services such as nginx, uwsgi, bind9, agama, prometheus, pinger, grafana, mysql, and influxdb.
+This document serves as this backup policy for the Ansible repository, which includes various services such as nginx, uwsgi, bind9, agama, prometheus, pinger, grafana, mysql, and influxdb.
 
 ### Backup Coverage
 

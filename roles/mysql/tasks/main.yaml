@@ -61,3 +61,11 @@
   apt: 
     name: prometheus-mysqld-exporter
 
+- name: Create backup directory for mysql
+  file:
+    path: /home/backup/mysql
+    state: directory
+    owner: backup
+    group: backup
+    mode: 0660
+

@@ -68,3 +68,11 @@
     name: prometheus-influxdb-stats-exporter.service
     state: started
     enabled: true
+
+- name: Create backup directory for influxdb
+  file:
+    path: /home/backup/influxdb
+    state: directory
+    owner: backup
+    group: backup
+    mode: 0660

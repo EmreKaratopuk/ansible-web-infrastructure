@@ -52,3 +52,17 @@
   template:
     src: known_hosts
     dest: /home/backup/.ssh/known_hosts
+
+# set up backup
+
+- name: Create restore directory 
+  file:
+    path: /home/backup/restore
+    state: directory
+    owner: backup
+    group: backup
+    mode: 0660
+
+- name: Install duplicity
+  apt:
+    name: duplicity
