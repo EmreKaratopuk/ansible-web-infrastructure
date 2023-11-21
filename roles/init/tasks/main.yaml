@@ -64,7 +64,7 @@
     state: directory
     owner: backup
     group: backup
-    mode: 0660
+    mode: 0777
 
 - name: Install duplicity
   apt:

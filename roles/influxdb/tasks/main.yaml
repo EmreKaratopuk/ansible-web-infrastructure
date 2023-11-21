@@ -78,3 +78,8 @@
     owner: backup
     group: backup
     mode: 0777
+
+- name: Create scheduled influxdb backup task with cron
+  copy:
+    src: cron-influxdb-backup
+    dest: /etc/cron.d/influxdb-backup

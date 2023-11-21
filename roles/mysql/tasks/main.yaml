@@ -89,7 +89,7 @@
     group: backup
     mode: 0600
 
-- name: Create scheduled backup task with cron
+- name: Create scheduled mysql backup task with cron
   copy:
     src: cron-mysql-backup
     dest: /etc/cron.d/mysql-backup
