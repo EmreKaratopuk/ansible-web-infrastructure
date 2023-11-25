@@ -1,64 +1,42 @@
-- name: Create /etc/apt/keyrings directory
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-
-- name: Get grafana GPG key
-  apt_key:
-    url: https://apt.grafana.com/gpg.key
-    keyring: /etc/apt/keyrings/grafana.gpg
-
-- name: Get grafana source with apt
-  apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main"
-    filename: /etc/apt/sources.list.d/grafana.list
-
-- name: Install grafana
-  apt:
+- name: Install Grafana via Docker
+  community.docker.docker_container:
     name: grafana
+    image: grafana/grafana
+    volumes: /opt/grafana:/etc/grafana
+    
 
-- name: Start grafana
-  service:
-    name: grafana-server
-    state: started
-    enabled: true
+- name: Create volume directories
+  ansible.builtin.file:
+    path: /opt/grafana/provisioning/{{ item }}
+    state: directory
+  loop:
+    - dashboards
+    - datasources
 
-- name: Configure reverse proxy
+- name: Copy grafana configs to volume
   template:
     src: grafana.ini
-    dest: /etc/grafana/grafana.ini
+    dest: /opt/grafana/grafana.ini
   notify: Restart grafana
 
-
-# Configure grafana by importing previous data
-
-- name: Add data sources
-  copy:
-    src: dataSources.yaml
-    dest: /etc/grafana/provisioning/datasources/dataSource.yaml
-  notify: Restart grafana
-
-- name: Configure dashboards settings
+- name: Copy dashboards config to volume
   copy:
     src: dashboards.yaml
-    dest: /etc/grafana/provisioning/dashboards/dashboards.yaml
+    dest: /opt/grafana/provisioning/dashboards/dashboards.yaml
   notify: Restart grafana
 
-- name: Create dashboards directory to import dashboards
-  file:
-    path: /var/lib/grafana/dashboards/
-    state: directory
+- name: Copy datasources config to volume
+  copy:
+    src: dataSources.yaml
+    dest: /opt/grafana/provisioning/datasources/dataSources.yaml
+  notify: Restart grafana
 
-- name: Import all grafana dashboards
+- name: Copy all dashboards to volume
   copy:
     src: "{{ item }}"
-    dest: /var/lib/grafana/dashboards/{{ item }}
+    dest: /opt/grafana/provisioning/dashboards/{{ item }}
   loop:
     - main.json
     - mysql.json
     - syslog.json
   notify: Restart grafana
-
-# - name: view hostvars
-#   debug:
-#     var: hostvars['EmreKaratopuk-1']['ansible_port'] | int + 58

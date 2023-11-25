@@ -29,6 +29,12 @@
     - role: influxdb
       tags: in
 
+- name: Docker server
+  hosts: docker_servers
+  roles:
+    - role: docker
+      tags: doc
+
 - name: Pinger server
   hosts: pinger_servers
   roles:

@@ -1,0 +1,64 @@
+- name: Create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+
+- name: Get grafana GPG key
+  apt_key:
+    url: https://apt.grafana.com/gpg.key
+    keyring: /etc/apt/keyrings/grafana.gpg
+
+- name: Get grafana source with apt
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main"
+    filename: /etc/apt/sources.list.d/grafana.list
+
+- name: Install grafana
+  apt:
+    name: grafana
+
+- name: Start grafana
+  service:
+    name: grafana-server
+    state: started
+    enabled: true
+
+- name: Configure reverse proxy
+  template:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
+  notify: Restart grafana
+
+
+# Configure grafana by importing previous data
+
+- name: Add data sources
+  copy:
+    src: dataSources.yaml
+    dest: /etc/grafana/provisioning/datasources/dataSource.yaml
+  notify: Restart grafana
+
+- name: Configure dashboards settings
+  copy:
+    src: dashboards.yaml
+    dest: /etc/grafana/provisioning/dashboards/dashboards.yaml
+  notify: Restart grafana
+
+- name: Create dashboards directory to import dashboards
+  file:
+    path: /var/lib/grafana/dashboards/
+    state: directory
+
+- name: Import all grafana dashboards
+  copy:
+    src: "{{ item }}"
+    dest: /var/lib/grafana/dashboards/{{ item }}
+  loop:
+    - main.json
+    - mysql.json
+    - syslog.json
+  notify: Restart grafana
+
+# - name: view hostvars
+#   debug:
+#     var: hostvars['EmreKaratopuk-1']['ansible_port'] | int + 58
