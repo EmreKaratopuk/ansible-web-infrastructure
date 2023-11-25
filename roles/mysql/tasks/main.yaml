@@ -5,8 +5,8 @@
     name: mysql-server
 
 - name: Listen public
-  ansible.builtin.copy:
-    src: override.cnf
+  template:
+    src: override.cnf.j2
     dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: Restart mysql
 
@@ -60,6 +60,29 @@
 - name: Install prometheus-mysqld-exporter
   apt: 
     name: prometheus-mysqld-exporter
+
+# Replica Lab
+
+- name: Export replica status
+  copy:
+    src: prometheus-mysqld-exporter
+    dest: /etc/default/prometheus-mysqld-exporter
+  notify: Restart mysql-exporter    
+
+- name: Add mysql replication user
+  community.mysql.mysql_user:
+    name: "{{ mysql_replication_username }}"
+    password: "{{ mysql_replication_password }}"
+    host: "%"
+    priv: "*.*:REPLICATION SLAVE"
+    login_unix_socket: /var/run/mysqld/mysqld.sock 
+
+- name: Configure mysql dynamic variables for replica
+  community.mysql.mysql_variables:
+    variable: read_only
+    value: "{{ 'OFF' if inventory_hostname == mysql_host else 'ON' }}"
+    mode: persist
+    login_unix_socket: /var/run/mysqld/mysqld.sock
 
 # configure backup process for mysql
 

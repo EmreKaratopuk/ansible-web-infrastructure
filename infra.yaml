@@ -5,24 +5,39 @@
     - role: init
       tags: init
 
-- name: Database server
-  hosts: db_servers
+- name: Prometheus server
+  hosts: prometheus_servers
   roles:
     - role: prometheus
       tags: pro
 
+- name: Database server
+  hosts: db_servers
+  roles:
     - role: mysql
       tags: db
 
+- name: Bind server
+  hosts: bind_servers
+  roles:
     - role: bind
       tags: bind
 
+- name: influxDB server
+  hosts: influxdb_servers
+  roles:
     - role: influxdb
       tags: in
 
+- name: Pinger server
+  hosts: pinger_servers
+  roles:
     - role: pinger
       tags: ping
 
+- name: Grafana server
+  hosts: grafana_servers
+  roles:
     - role: grafana
       tags: gra
 
