@@ -13,7 +13,7 @@ datasources:
 - name: InfluxDB-pinger
   type: influxdb
   access: proxy
-  url: http://localhost:8086
+  url: http://EmreKaratopuk-2:8086
   jsonData:
     dbName: pingResults
     httpMode: GET
@@ -21,7 +21,7 @@ datasources:
 - name: InfluxDB-telegraf
   type: influxdb
   access: proxy
-  url: http://localhost:8086
+  url: http://EmreKaratopuk-2:8086
   jsonData:
     dbName: telegraf
     httpMode: GET

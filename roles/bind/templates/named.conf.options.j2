@@ -1,4 +1,4 @@
-acl allowed_nets { {{(hostvars['EmreKaratopuk-1']['ansible_default_ipv4']['network'] + '/' + hostvars['EmreKaratopuk-1']['ansible_default_ipv4']['netmask']) | ansible.utils.ipaddr('net')}}; 127.0.0.0/8; };
+acl allowed_nets { {{(hostvars['EmreKaratopuk-1']['ansible_default_ipv4']['network'] + '/' + hostvars['EmreKaratopuk-1']['ansible_default_ipv4']['netmask']) | ansible.utils.ipaddr('net')}}; 127.0.0.0/8; 172.17.0.0/16; };
 options {
 	directory "/var/lib/bind";
 

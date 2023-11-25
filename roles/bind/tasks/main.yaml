@@ -6,7 +6,6 @@
   template:
     src: named.conf.{{ item }}.j2
     dest: /etc/bind/named.conf.{{ item }}
-
   loop:
     - options
     - local
