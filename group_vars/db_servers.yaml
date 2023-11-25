@@ -65,3 +65,4 @@ mysql_replication_password: !vault |
           6364
 
 node_id: "{{ (ansible_port / 100) | int }}"
+mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"

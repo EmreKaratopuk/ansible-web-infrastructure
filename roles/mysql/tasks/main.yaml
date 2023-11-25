@@ -26,6 +26,9 @@
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
 
 # Configure user settings
 
@@ -83,6 +86,9 @@
     value: "{{ 'OFF' if inventory_hostname == mysql_host else 'ON' }}"
     mode: persist
     login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
 
 # configure backup process for mysql
 
@@ -113,6 +119,6 @@
     mode: 0600
 
 - name: Create scheduled mysql backup task with cron
-  copy:
-    src: cron-mysql-backup
+  template:
+    src: cron-mysql-backup.j2
     dest: /etc/cron.d/mysql-backup

@@ -1,3 +1,6 @@
+{% if inventory_hostname == mysql_backup_host %}
 0 20 * * * backup mysqldump agama > /home/backup/mysql/agama.sql
 15 20 * * 0  backup  duplicity --no-encryption full /home/backup/mysql/ rsync://EmreKaratopuk@backup.istikbal.ek/mysql
 20 20 * * 1-6  backup  duplicity --no-encryption incremental /home/backup/mysql/ rsync://EmreKaratopuk@backup.istikbal.ek/mysql
+
+{% endif %}
