@@ -3,8 +3,8 @@ server {
 	server_name _;
 
 	location / {
-		uwsgi_pass localhost:5000; 
-		include uwsgi_params;
+		proxy_pass http://EmreKaratopuk-1:{{ agama_port }}; 
+		proxy_set_header Host $http_host;
 	}
 
 	location /prometheus {
@@ -12,7 +12,7 @@ server {
 	}
 
 	location /grafana {
-		proxy_pass http://EmreKaratopuk-2:3000;
+		proxy_pass http://EmreKaratopuk-2:{{ grafana_port }};
 		proxy_set_header Host $http_host;
 	}
 }

@@ -3,7 +3,7 @@
     name: grafana
     image: grafana/grafana
     volumes: /opt/grafana:/etc/grafana
-    
+    published_ports: "{{ grafana_port }}:3000"
 
 - name: Create volume directories
   ansible.builtin.file:

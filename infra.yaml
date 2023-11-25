@@ -58,9 +58,6 @@
   roles:
     - role: agama
       tags: aga
-    
-    - role: uwsgi
-      tags: uw
 
     - role: nginx
       tags: ng
