@@ -1,0 +1,30 @@
+- set_fact: 
+    default_ip: "{{ hostvars['EmreKaratopuk-1']['ansible_default_ipv4']['address'] }}"
+    ip_prefix: "{{ hostvars['EmreKaratopuk-1']['ansible_default_ipv4']['prefix'] }}"
+- set_fact: 
+    first_second_ip_octet: "{{ default_ip.split('.')[:2] }}" 
+    third_ip_octet: "{{ default_ip.split('.')[2] }}"
+    fourth_ip_octet: "{{ default_ip.split('.')[3] }}"
+
+- name: Install keepalived
+  apt:
+    name: keepalived
+
+- name: Create keepalived_script user
+  ansible.builtin.user:
+    name: keepalived_script
+
+- name: Copy check script for keepalived
+  copy:
+    src: keepalived_script
+    dest: /home/keepalived_script/keepalived_script
+    mode: 0700
+    owner: keepalived_script
+    group: keepalived_script
+
+- name: Copy keepalived config
+  template:
+    src: keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
+  notify: Restart keepalived
+

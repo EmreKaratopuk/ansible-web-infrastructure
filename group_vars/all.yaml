@@ -33,3 +33,6 @@ grafana_port: 3001
 # agama
 
 agama_port: 8001 
+
+# keepalived
+prioritized_keepalived: EmreKaratopuk-1

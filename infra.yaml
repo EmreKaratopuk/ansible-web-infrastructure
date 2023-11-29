@@ -3,61 +3,70 @@
   hosts: all
   roles:
     - role: init
-      tags: init
+  tags: init
 
 - name: Prometheus server
   hosts: prometheus_servers
   roles:
     - role: prometheus
-      tags: pro
+  tags: pro
 
 - name: Database server
   hosts: db_servers
   roles:
     - role: mysql
-      tags: db
+  tags: db
 
 - name: Bind server
   hosts: bind_servers
   roles:
     - role: bind
-      tags: bind
-
-- name: influxDB server
-  hosts: influxdb_servers
-  roles:
-    - role: influxdb
-      tags: in
-
-- name: Docker server
-  hosts: docker_servers
-  roles:
-    - role: docker
-      tags: doc
-
-- name: Pinger server
-  hosts: pinger_servers
-  roles:
-    - role: pinger
-      tags: ping
-
-- name: Grafana server
-  hosts: grafana_servers
-  roles:
-    - role: grafana
-      tags: gra
+  tags: bind
 
 - name: Configure DNS settings for both
   hosts: all
   roles:
     - role: config-dns
-      tags: dns
+  tags: dns
 
-- name: Web server
-  hosts: web_servers
+- name: influxDB server
+  hosts: influxdb_servers
+  roles:
+    - role: influxdb
+  tags: in
+
+- name: Docker server
+  hosts: docker_servers
+  roles:
+    - role: docker
+  tags: doc
+
+- name: Pinger server
+  hosts: pinger_servers
+  roles:
+    - role: pinger
+  tags: ping
+
+- name: Grafana server
+  hosts: grafana_servers
+  roles:
+    - role: grafana
+  tags: gra
+
+- name: Agama server
+  hosts: agama_servers
   roles:
     - role: agama
-      tags: aga
+  tags: aga
 
+- name: Nginx server
+  hosts: nginx_servers
+  roles:
     - role: nginx
-      tags: ng
+  tags: ng
+
+- name: Keepalived
+  hosts: keepalived_servers
+  roles:
+    - role: keepalived
+  tags: ke
