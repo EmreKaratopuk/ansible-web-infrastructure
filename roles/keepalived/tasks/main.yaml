@@ -16,7 +16,7 @@
 
 - name: Copy check script for keepalived
   copy:
-    src: keepalived_script
+    src: keepalived_script.j2
     dest: /home/keepalived_script/keepalived_script
     mode: 0700
     owner: keepalived_script
@@ -27,4 +27,10 @@
     src: keepalived.conf
     dest: /etc/keepalived/keepalived.conf
   notify: Restart keepalived
+
+- name: Start keepalived
+  service:
+    name: keepalived
+    state: started
+    enabled: true
 

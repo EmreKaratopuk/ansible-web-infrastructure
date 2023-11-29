@@ -65,6 +65,12 @@
     - role: nginx
   tags: ng
 
+- name: HAProxy
+  hosts: haproxy_servers
+  roles: 
+    - role: haproxy
+  tags: ha
+
 - name: Keepalived
   hosts: keepalived_servers
   roles:

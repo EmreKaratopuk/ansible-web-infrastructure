@@ -38,3 +38,6 @@ EmreKaratopuk-1
 EmreKaratopuk-1
 EmreKaratopuk-2
 
+[haproxy_servers]
+EmreKaratopuk-1
+EmreKaratopuk-2
