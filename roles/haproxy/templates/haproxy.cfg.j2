@@ -26,6 +26,12 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 listen my_ha_frontend
-    bind :88
-    server docker1 EmreKaratopuk-1:{{agama_port}} check
-    server docker2 EmreKaratopuk-2:{{agama_port}} check
+        bind :88
+        server docker1 EmreKaratopuk-1:{{agama_port}} check
+        server docker2 EmreKaratopuk-2:{{agama_port}} check
+
+listen stats
+        bind :9188
+        stats enable
+        stats uri /status
+        stats refresh 5s 

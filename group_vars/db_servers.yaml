@@ -21,6 +21,10 @@ jobs_list:
     target_port: 9424
     target_group: influxdb_servers
 
+  - name: haproxy
+    target_port: 9101
+    target_group: haproxy_servers
+
 
 # MySQL
 

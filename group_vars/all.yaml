@@ -36,3 +36,6 @@ agama_port: 8001
 
 # keepalived
 prioritized_keepalived: EmreKaratopuk-1
+
+# prometheus-haproxy-exporter
+haproxy_exporter_port: 9188 

@@ -13,3 +13,21 @@
     name: haproxy
     state: started
     enabled: true
+
+# prometheus haproxy exporter
+
+- name: Install prometheus-haproxy-exporter
+  apt:
+    name: prometheus-haproxy-exporter
+
+- name: Start prometheus-haproxy-exporter
+  service:
+    name: prometheus-haproxy-exporter
+    state: started
+    enabled: true 
+
+- name: Configure prometheus-haproxy-exporter
+  template:
+    dest: /etc/default/prometheus-haproxy-exporter
+    src: prometheus-haproxy-exporter
+  notify: Restart prometheus-haproxy-exporter
