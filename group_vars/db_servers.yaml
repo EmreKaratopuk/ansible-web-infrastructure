@@ -25,6 +25,10 @@ jobs_list:
     target_port: 9101
     target_group: haproxy_servers
 
+  - name: keepalived
+    target_port: 9165
+    target_group: keepalived_servers
+
 
 # MySQL
 

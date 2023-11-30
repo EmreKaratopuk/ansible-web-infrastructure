@@ -34,3 +34,26 @@
     state: started
     enabled: true
 
+# keepalived-exporter
+
+- name: Download keepalived exporter
+  unarchive:
+    remote_src: true 
+    src: http://backup/keepalived-exporter-1.2.0.linux-amd64.tar.gz
+    dest: /usr/local/bin/
+
+- name: Create keepalived exporter service
+  copy: 
+    src: keepalived-exporter.service
+    dest: /etc/systemd/system/keepalived-exporter.service
+
+- name: Restart systemctl daemon
+  systemd:
+   daemon_reload: true
+
+- name: Start keepalived exporter service
+  service:
+    name: keepalived-exporter.service
+    state: started
+    enabled: true
+
