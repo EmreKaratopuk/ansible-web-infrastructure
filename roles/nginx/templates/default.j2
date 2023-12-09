@@ -2,6 +2,8 @@ server {
 	listen 80 default_server;
 	server_name _;
 
+    {% if inventory_hostname == nginx_main_host %}
+
 	location / {
 		proxy_pass http://EmreKaratopuk-1:{{ agama_port }}; 
 		proxy_set_header Host $http_host;
@@ -15,6 +17,16 @@ server {
 		proxy_pass http://EmreKaratopuk-2:{{ grafana_port }};
 		proxy_set_header Host $http_host;
 	}
+
+	{% else %}
+	
+	location / {
+	proxy_pass http://EmreKaratopuk-2:{{ agama_port }}; 
+	proxy_set_header Host $http_host;
+	}
+
+	{% endif %}
+
 }
 
 server {

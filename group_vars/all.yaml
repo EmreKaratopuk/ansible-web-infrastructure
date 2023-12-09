@@ -27,11 +27,9 @@ mysql_backup_password: !vault |
           3865
 
 # grafana settings
-
 grafana_port: 3001
 
 # agama
-
 agama_port: 8001 
 
 # keepalived
@@ -39,3 +37,6 @@ prioritized_keepalived: EmreKaratopuk-1
 
 # prometheus-haproxy-exporter
 haproxy_exporter_port: 9188 
+
+# nginx
+nginx_main_host: EmreKaratopuk-1

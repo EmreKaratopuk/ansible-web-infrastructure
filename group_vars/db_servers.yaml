@@ -15,7 +15,7 @@ jobs_list:
 
   - name: nginx
     target_port: 9113
-    target_group: web_servers
+    target_group: nginx_servers
 
   - name: influxdb
     target_port: 9424

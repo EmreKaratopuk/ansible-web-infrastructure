@@ -1,12 +1,9 @@
-EmreKaratopuk-1 ansible_host=193.40.156.67 ansible_port=34322 ansible_user=ubuntu
-EmreKaratopuk-2 ansible_host=193.40.156.67 ansible_port=36222 ansible_user=ubuntu
+EmreKaratopuk-1 ansible_host=193.40.156.67 ansible_port=9522 ansible_user=ubuntu
+EmreKaratopuk-2 ansible_host=193.40.156.67 ansible_port=10522 ansible_user=ubuntu
 
 [db_servers]
 EmreKaratopuk-1
 EmreKaratopuk-2
-
-[web_servers]
-EmreKaratopuk-1
 
 [prometheus_servers]
 EmreKaratopuk-2
@@ -33,6 +30,7 @@ EmreKaratopuk-2
 
 [nginx_servers]
 EmreKaratopuk-1
+EmreKaratopuk-2
 
 [keepalived_servers]
 EmreKaratopuk-1
