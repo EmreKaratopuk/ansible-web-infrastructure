@@ -40,3 +40,6 @@ haproxy_exporter_port: 9188
 
 # nginx
 nginx_main_host: EmreKaratopuk-1
+
+# docker
+agama_per_vm: 3

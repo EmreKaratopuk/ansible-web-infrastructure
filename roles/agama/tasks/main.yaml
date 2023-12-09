@@ -20,9 +20,25 @@
 
 - name: Start agama docker container
   community.docker.docker_container:
-    name: agama
+    name: agama{{item}}
     image: agama
-    published_ports: "{{ agama_port }}:8000"
+    published_ports: "{{ agama_port + item }}:8000"
     env:
        AGAMA_DATABASE_URI: mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
   no_log: true
+  loop: "{{ range(agama_per_vm) }}"
+
+- name: List running agama containers
+  docker_host_info:
+    containers: true
+    containers_filters:
+      name: "^agama*"
+  register: agama_containers
+
+- name: Stop unnecessary agama containers
+  community.docker.docker_container:
+    name: agama{{ item }}
+    state: stopped
+    force_kill: true
+  loop: "{{ [] if agama_per_vm == agama_containers['containers'] | length else range(agama_containers['containers'] | length) }}"
+  when: item + 1 > agama_per_vm

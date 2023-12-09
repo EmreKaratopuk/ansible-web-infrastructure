@@ -27,8 +27,12 @@ defaults
 
 listen my_ha_frontend
         bind :88
-        server docker1 EmreKaratopuk-1:{{agama_port}} check
-        server docker2 EmreKaratopuk-2:{{agama_port}} check
+
+        {% for agama_index in range(agama_per_vm) %}
+
+        server vm1-{{agama_index}} EmreKaratopuk-1:{{agama_port + agama_index}} check
+        server vm2-{{agama_index}} EmreKaratopuk-2:{{agama_port + agama_index}} check
+        {% endfor %}
 
 listen stats
         bind :9188

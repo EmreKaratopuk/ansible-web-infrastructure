@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1376,7 +1375,7 @@
         }
       ],
       "timeFrom": "5s",
-      "title": "HAProxy 1 Server Status",
+      "title": "HAProxy 1 Container Status",
       "type": "stat"
     },
     {
@@ -1424,7 +1423,6 @@
               "mode": "off"
             }
           },
-          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1448,7 +1446,7 @@
         "x": 0,
         "y": 9
       },
-      "id": 6,
+      "id": 9,
       "options": {
         "legend": {
           "calcs": [],
@@ -1470,8 +1468,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "exemplar": false,
-          "expr": "idelta(bind_resolver_queries_total[1m])",
+          "expr": "idelta(mysql_global_status_commands_total{command=\"select\"}[1m])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1481,7 +1478,7 @@
           "useBackend": false
         }
       ],
-      "title": "DNS Queries ",
+      "title": "SELECT Queries ",
       "type": "timeseries"
     },
     {
@@ -1578,7 +1575,7 @@
         }
       ],
       "timeFrom": "5s",
-      "title": "HAProxy 2 Server Status",
+      "title": "HAProxy 2 Container Status",
       "type": "stat"
     },
     {
@@ -1626,6 +1623,7 @@
               "mode": "off"
             }
           },
+          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1649,7 +1647,7 @@
         "x": 12,
         "y": 12
       },
-      "id": 9,
+      "id": 6,
       "options": {
         "legend": {
           "calcs": [],
@@ -1671,7 +1669,8 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "idelta(mysql_global_status_commands_total{command=\"select\"}[1m])",
+          "exemplar": false,
+          "expr": "idelta(bind_resolver_queries_total[1m])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1681,7 +1680,7 @@
           "useBackend": false
         }
       ],
-      "title": "SELECT Queries ",
+      "title": "DNS Queries ",
       "type": "timeseries"
     },
     {
