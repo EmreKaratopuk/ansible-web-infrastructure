@@ -1,0 +1,19 @@
+$TTL	604800
+{{ reverse_domain_name }}.	IN	SOA	vm1.{{ reverse_domain_name }}. alikar.{{ reverse_domain_name }}. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+{% for vm in groups['bind_servers'] %}
+{{ reverse_domain_name }}.	IN	NS	{{ vm }}
+{% endfor %}
+
+{% for vm in groups['all'] %}
+{{ vm }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
+{% endfor %}
+
+{% for vm in groups['all'] %}
+{{ hostvars[vm]['ansible_default_ipv4']['address'].split('.')[3] }}.{{ hostvars[vm]['ansible_default_ipv4']['address'].split('.')[2]}}	IN	PTR	{{ vm }}.{{ domain_name }}.
+{% endfor %}

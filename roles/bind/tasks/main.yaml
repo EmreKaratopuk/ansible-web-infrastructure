@@ -15,11 +15,14 @@
 
 - name: Configure master zone
   template:
-    src: zone.j2
-    dest: /var/cache/bind/db.{{ domain_name }}
-    force: false
+    src: "{{ item }}.j2"
+    dest: /var/cache/bind/db.{{ item }}
+    # force: false
   notify: Restart bind9
-  when: inventory_hostname in groups ['bind_masters']
+  loop: 
+  - "{{ domain_name }}"
+  - "{{ reverse_domain_name }}"
+  when: inventory_hostname in groups['bind_masters']
 
 # Export bind logs to prometheus
 - name: Install prometheus-bind-exporter
@@ -43,25 +46,6 @@
 - name: Run handlers
   meta: flush_handlers
 
-# - name: Add A records
-#   community.general.nsupdate:
-#     key_algorithm: "hmac-sha256" 
-#     key_name: "nsupdate.key"
-#     key_secret: "{{ dns_nsupdate_secret }}"
-#     server: "{{ item.1 }}"
-#     record: "{{ item.0.key }}"
-#     value: "{{ item.0.value }}"
-#     zone: "{{ domain_name }}"
-#   loop: "{{ a_records | map('dict2items') | flatten | zip(groups['bind_masters'])}}"
-#   when: inventory_hostname in groups ['bind_masters']
-
-- name: Debug
-  debug:
-    var: hostvars[master]['ansible_default_ipv4']['address']
-  loop: "{{ groups['bind_masters'] }}"
-  loop_control:
-    loop_var: master 
-
 - name: Add A records
   include_role:
     name: dns_record
@@ -71,7 +55,6 @@
     value: "{{ item.value }}"
     type: "A"
   loop: "{{ a_records | map('dict2items') | flatten }}"
-
 
 - name: Add NS records
   include_role:

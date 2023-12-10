@@ -1,6 +1,8 @@
-zone "{{ domain_name }}"  {
+{% for domain in [domain_name, reverse_domain_name] %}
 
-{% if inventory_hostname in groups ['bind_masters'] %}
+zone "{{ domain }}"  {
+
+{% if inventory_hostname in groups['bind_masters'] %}
     type master;
     allow-transfer {
         127.0.0.1; 
@@ -13,22 +15,20 @@ zone "{{ domain_name }}"  {
 {% else %}
     type secondary;
     masters {
-
-    {% for master in groups['bind_slaves'] %}
-
+{% for master in groups['bind_masters'] %}
         {{ hostvars[master]['ansible_default_ipv4']['address'] }};
-    {% endfor %}
+{% endfor %}
     };
 {% endif %}
-    file "db.{{ domain_name }}";
+
+file "db.{{ domain }}";
 };
+{% endfor %}
 
 {% if inventory_hostname in groups['bind_slaves'] %}
 {% for master in groups['bind_masters'] %}
-
 server {{ hostvars[master]['ansible_default_ipv4']['address'] }} {
     keys {transfer.key;};
 };
-
 {% endfor %}
 {% endif %}

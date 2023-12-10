@@ -30,6 +30,7 @@ grafana_port: 3001
 
 # dns
 domain_name: istikbal.ek
+reverse_domain_name: 168.192.in-addr.arpa
 
 dns_transfer_secret: !vault |
           $ANSIBLE_VAULT;1.1;AES256
