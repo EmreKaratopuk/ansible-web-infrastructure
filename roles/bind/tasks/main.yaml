@@ -6,18 +6,30 @@
   template:
     src: named.conf.{{ item }}.j2
     dest: /etc/bind/named.conf.{{ item }}
+    validate: /usr/sbin/named-checkconf %s
   loop:
     - options
     - local
   notify: Restart bind9
+  no_log: true
 
 - name: Configure master zone
   template:
     src: zone.j2
-    dest: /var/lib/bind/db.istikbal.ek
+    dest: /var/cache/bind/db.{{ domain_name }}
   notify: Restart bind9
+  when: inventory_hostname in groups ['bind_masters']
 
 # Export bind logs to prometheus
 - name: Install prometheus-bind-exporter
   apt:
     name: prometheus-bind-exporter
+
+- name: Start bind9 and exporter
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - bind9
+    - prometheus-bind-exporter

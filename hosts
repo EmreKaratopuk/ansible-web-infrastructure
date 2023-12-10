@@ -1,5 +1,5 @@
-EmreKaratopuk-1 ansible_host=193.40.156.67 ansible_port=9522 ansible_user=ubuntu
-EmreKaratopuk-2 ansible_host=193.40.156.67 ansible_port=10522 ansible_user=ubuntu
+EmreKaratopuk-1 ansible_host=193.40.156.67 ansible_port=28822 ansible_user=ubuntu
+EmreKaratopuk-2 ansible_host=193.40.156.67 ansible_port=42622 ansible_user=ubuntu
 
 [db_servers]
 EmreKaratopuk-1
@@ -8,8 +8,15 @@ EmreKaratopuk-2
 [prometheus_servers]
 EmreKaratopuk-2
 
-[bind_servers]
+[bind_masters]
 EmreKaratopuk-2
+
+[bind_slaves]
+EmreKaratopuk-1
+
+[bind_servers:children]
+bind_masters
+bind_slaves
 
 [influxdb_servers]
 EmreKaratopuk-2

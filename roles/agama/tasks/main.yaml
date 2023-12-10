@@ -11,7 +11,7 @@
     - agama.py
     - Dockerfile
 
-- name: Create agama docker container
+- name: Create agama docker image
   community.docker.docker_image:
     name: agama
     source: build
