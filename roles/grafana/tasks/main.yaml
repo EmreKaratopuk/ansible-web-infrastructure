@@ -40,3 +40,12 @@
     - mysql.json
     - syslog.json
   notify: Restart grafana
+
+- name: Add grafana A record
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
+    record: "grafana"
+    value: "{{ groups['grafana_servers'][0] }}"
+    type: "CNAME"

@@ -30,8 +30,8 @@ listen my_ha_frontend
 
         {% for agama_index in range(agama_per_vm) %}
 
-        server vm1-{{agama_index}} EmreKaratopuk-1:{{agama_port + agama_index}} check
-        server vm2-{{agama_index}} EmreKaratopuk-2:{{agama_port + agama_index}} check
+        server vm1-{{agama_index}} lb-1:{{agama_port + agama_index}} check
+        server vm2-{{agama_index}} lb-2:{{agama_port + agama_index}} check
         {% endfor %}
 
 listen stats

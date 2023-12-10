@@ -11,7 +11,7 @@
     - options
     - local
   notify: Restart bind9
-  # no_log: true
+  no_log: true
 
 - name: Configure master zone
   template:
@@ -43,14 +43,44 @@
 - name: Run handlers
   meta: flush_handlers
 
+# - name: Add A records
+#   community.general.nsupdate:
+#     key_algorithm: "hmac-sha256" 
+#     key_name: "nsupdate.key"
+#     key_secret: "{{ dns_nsupdate_secret }}"
+#     server: "{{ item.1 }}"
+#     record: "{{ item.0.key }}"
+#     value: "{{ item.0.value }}"
+#     zone: "{{ domain_name }}"
+#   loop: "{{ a_records | map('dict2items') | flatten | zip(groups['bind_masters'])}}"
+#   when: inventory_hostname in groups ['bind_masters']
+
+- name: Debug
+  debug:
+    var: hostvars[master]['ansible_default_ipv4']['address']
+  loop: "{{ groups['bind_masters'] }}"
+  loop_control:
+    loop_var: master 
+
 - name: Add A records
-  community.general.nsupdate:
-    key_algorithm: "hmac-sha256" 
-    key_name: "nsupdate.key"
-    key_secret: "{{ dns_nsupdate_secret }}"
-    server: "192.168.43.170"
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
     record: "{{ item.key }}"
     value: "{{ item.value }}"
-    zone: "{{ domain_name }}"
-  loop: "{{ a_records | map('dict2items') | flatten}}"
-  when: inventory_hostname in groups ['bind_masters']
+    type: "A"
+  loop: "{{ a_records | map('dict2items') | flatten }}"
+
+
+- name: Add NS records
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
+    record: "ns-{{server_index + 1}}"
+    value: "{{ item }}"
+    type: "CNAME"
+  loop: "{{ groups['bind_servers'] }}"
+  loop_control:
+    index_var: server_index

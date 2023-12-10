@@ -122,3 +122,15 @@
   template:
     src: cron-mysql-backup.j2
     dest: /etc/cron.d/mysql-backup
+    
+- name: Add mysql A records
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
+    record: "mysql-{{server_index + 1}}"
+    value: "{{ item }}"
+    type: "CNAME"
+  loop: "{{ groups['db_servers'] }}"
+  loop_control:
+    index_var: server_index

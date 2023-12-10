@@ -230,15 +230,19 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "bind_up",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "bind_up{instance=\"EmreKaratopuk-1:9119\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
-      "title": "Bind9 Status",
+      "title": "Bind9 1 Status",
       "type": "stat"
     },
     {
@@ -313,15 +317,19 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "bind_up",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "bind_up{instance=\"EmreKaratopuk-2:9119\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
-      "title": "Bind9 Status",
+      "title": "Bind9 2 Status",
       "type": "stat"
     },
     {

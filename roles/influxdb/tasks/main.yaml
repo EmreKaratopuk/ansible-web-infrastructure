@@ -83,3 +83,12 @@
   copy:
     src: cron-influxdb-backup
     dest: /etc/cron.d/influxdb-backup
+
+- name: Add influxdb A record
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
+    record: "influxdb"
+    value: "{{ groups['influxdb_servers'][0] }}"
+    type: "CNAME"

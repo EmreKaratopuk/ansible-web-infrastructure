@@ -15,3 +15,12 @@
     src: prometheus.yml
     dest: /etc/prometheus/prometheus.yml
   notify: Restart Prometheus
+
+- name: Add prometheus A record
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
+    record: "prometheus"
+    value: "{{ groups['prometheus_servers'][0] }}"
+    type: "CNAME"

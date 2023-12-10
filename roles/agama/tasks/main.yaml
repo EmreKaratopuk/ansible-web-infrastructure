@@ -42,3 +42,15 @@
     force_kill: true
   loop: "{{ [] if agama_per_vm == agama_containers['containers'] | length else range(agama_containers['containers'] | length) }}"
   when: item + 1 > agama_per_vm
+
+- name: Add agama A records
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
+    record: "www-{{server_index + 1}}"
+    value: "{{ item }}"
+    type: "CNAME"
+  loop: "{{ groups['agama_servers'] }}"
+  loop_control:
+    index_var: server_index
