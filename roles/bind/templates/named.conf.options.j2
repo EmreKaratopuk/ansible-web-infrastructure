@@ -22,7 +22,7 @@ key "transfer.key" {
         secret "{{ dns_transfer_secret }}";
 };
 
-key "update.key" {
+key "nsupdate.key" {
         algorithm hmac-sha256;
-        secret "{{ dns_update_secret }}";
-};	
+        secret "{{ dns_nsupdate_secret }}";
+};

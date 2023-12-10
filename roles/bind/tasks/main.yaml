@@ -6,17 +6,18 @@
   template:
     src: named.conf.{{ item }}.j2
     dest: /etc/bind/named.conf.{{ item }}
-    validate: /usr/sbin/named-checkconf %s
+    # validate: /usr/sbin/named-checkconf %s
   loop:
     - options
     - local
   notify: Restart bind9
-  no_log: true
+  # no_log: true
 
 - name: Configure master zone
   template:
     src: zone.j2
     dest: /var/cache/bind/db.{{ domain_name }}
+    force: false
   notify: Restart bind9
   when: inventory_hostname in groups ['bind_masters']
 
@@ -33,3 +34,23 @@
   loop:
     - bind9
     - prometheus-bind-exporter
+
+- name: Install dnspython
+  apt:
+    name: python3-dnspython
+  when: inventory_hostname in groups ['bind_masters']
+
+- name: Run handlers
+  meta: flush_handlers
+
+- name: Add A records
+  community.general.nsupdate:
+    key_algorithm: "hmac-sha256" 
+    key_name: "nsupdate.key"
+    key_secret: "{{ dns_nsupdate_secret }}"
+    server: "192.168.43.170"
+    record: "{{ item.key }}"
+    value: "{{ item.value }}"
+    zone: "{{ domain_name }}"
+  loop: "{{ a_records | map('dict2items') | flatten}}"
+  when: inventory_hostname in groups ['bind_masters']

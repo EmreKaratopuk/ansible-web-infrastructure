@@ -1,2 +1,7 @@
-nameserver {{ hostvars['EmreKaratopuk-2']['ansible_default_ipv4']['address'] }}
-search istikbal.ek
+search {{ domain_name }}
+{% for group in ['bind_masters', 'bind_slaves']%}
+
+{% for server in groups[group] %}
+nameserver {{ hostvars[server]['ansible_default_ipv4']['address'] }}
+{% endfor %}
+{% endfor %}

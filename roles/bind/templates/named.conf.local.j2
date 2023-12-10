@@ -8,7 +8,7 @@ zone "{{ domain_name }}"  {
     };
     allow-update {
         127.0.0.1;
-        key update.key;
+        key nsupdate.key;
     };
 {% else %}
     type secondary;
@@ -27,7 +27,7 @@ zone "{{ domain_name }}"  {
 {% for master in groups['bind_masters'] %}
 
 server {{ hostvars[master]['ansible_default_ipv4']['address'] }} {
-    keys {dns_transfer_secret;};
+    keys {transfer.key;};
 };
 
 {% endfor %}
