@@ -17,7 +17,7 @@
   template:
     src: "{{ item }}.j2"
     dest: /var/cache/bind/db.{{ item }}
-    # force: false
+    force: false
   notify: Restart bind9
   loop: 
   - "{{ domain_name }}"
@@ -37,11 +37,6 @@
   loop:
     - bind9
     - prometheus-bind-exporter
-
-- name: Install dnspython
-  apt:
-    name: python3-dnspython
-  when: inventory_hostname in groups ['bind_masters']
 
 - name: Run handlers
   meta: flush_handlers

@@ -18,6 +18,7 @@
     src: grafana.ini
     dest: /opt/grafana/grafana.ini
   notify: Restart grafana
+  no_log: true
 
 - name: Copy dashboards config to volume
   copy:

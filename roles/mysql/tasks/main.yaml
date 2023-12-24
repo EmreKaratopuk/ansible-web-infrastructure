@@ -39,6 +39,7 @@
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
     login_unix_socket: /var/run/mysqld/mysqld.sock 
+  no_log: true
 
 # mysql prometheus integration
 
@@ -109,6 +110,7 @@
       MAX_USER_CONNECTIONS: 3
     priv: "agama.*:SELECT,LOCK TABLES"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+  no_log: true
 
 - name: Create backup user credentials to access mysql
   template:
@@ -117,6 +119,7 @@
     owner: backup
     group: backup
     mode: 0600
+  no_log: true
 
 - name: Create scheduled mysql backup task with cron
   template:

@@ -1,6 +1,6 @@
 # for mysql, agama and uwsgi
 
-mysql_host: EmreKaratopuk-2
+mysql_host: EmreKaratopuk-1
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |

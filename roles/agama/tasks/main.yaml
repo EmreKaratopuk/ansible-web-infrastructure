@@ -23,6 +23,7 @@
     name: agama{{item}}
     image: agama
     published_ports: "{{ agama_port + item }}:8000"
+    restart_policy: "unless-stopped"
     env:
        AGAMA_DATABASE_URI: mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
   no_log: true

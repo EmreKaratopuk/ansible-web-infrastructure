@@ -5,6 +5,12 @@
     - role: init
   tags: init
 
+- name: Bind server
+  hosts: bind_servers
+  roles:
+    - role: bind
+  tags: bind
+
 - name: Prometheus server
   hosts: prometheus_servers
   roles:
@@ -16,12 +22,6 @@
   roles:
     - role: mysql
   tags: db
-
-- name: Bind server
-  hosts: bind_servers
-  roles:
-    - role: bind
-  tags: bind
 
 - name: Configure DNS settings for both
   hosts: all
