@@ -11,6 +11,12 @@
     - role: bind
   tags: bind
 
+- name: Configure DNS settings for both
+  hosts: all
+  roles:
+    - role: config-dns
+  tags: dns
+
 - name: Prometheus server
   hosts: prometheus_servers
   roles:
@@ -22,12 +28,6 @@
   roles:
     - role: mysql
   tags: db
-
-- name: Configure DNS settings for both
-  hosts: all
-  roles:
-    - role: config-dns
-  tags: dns
 
 - name: influxDB server
   hosts: influxdb_servers

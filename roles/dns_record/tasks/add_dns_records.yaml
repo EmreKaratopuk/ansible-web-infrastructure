@@ -3,7 +3,7 @@
     key_algorithm: "hmac-sha256" 
     key_name: "nsupdate.key"
     key_secret: "{{ dns_nsupdate_secret }}"
-    server: "{{ hostvars[master]['ansible_default_ipv4']['address'] }}"
+    server: "{{ master }}"
     record: "{{ record }}"
     value: "{{ value }}"
     type: "{{ type }}"
@@ -11,4 +11,3 @@
   loop: "{{ groups['bind_masters'] }}"
   loop_control:
     loop_var: master 
-  when: inventory_hostname in groups ['bind_masters']

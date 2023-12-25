@@ -50,6 +50,7 @@
     value: "{{ item.value }}"
     type: "A"
   loop: "{{ a_records | map('dict2items') | flatten }}"
+  when: inventory_hostname in groups['bind_masters']
 
 - name: Add NS records
   include_role:
@@ -62,3 +63,4 @@
   loop: "{{ groups['bind_servers'] }}"
   loop_control:
     index_var: server_index
+  when: inventory_hostname in groups['bind_masters']

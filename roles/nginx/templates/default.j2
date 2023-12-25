@@ -2,26 +2,21 @@ server {
 	listen 80 default_server;
 	server_name _;
 
-    {% if inventory_hostname == nginx_main_host %}
-
-	location / {
-		proxy_pass http://www-1:{{ agama_port }}; 
-		proxy_set_header Host $http_host;
-	}
+    {% if inventory_hostname in groups['grafana_servers'] %}
 
 	location /prometheus {
-		proxy_pass http://prometheus:9090;
+		proxy_pass http://localhost:9090;
 	}
 
 	location /grafana {
-		proxy_pass http://grafana:{{ grafana_port }};
+		proxy_pass http://localhost:{{ grafana_port }};
 		proxy_set_header Host $http_host;
 	}
 
 	{% else %}
 	
 	location / {
-	proxy_pass http://www-2:{{ agama_port }}; 
+	proxy_pass http://localhost:{{ agama_port }}; 
 	proxy_set_header Host $http_host;
 	}
 

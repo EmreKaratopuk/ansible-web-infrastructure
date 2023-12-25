@@ -2,6 +2,18 @@
   apt:
     name: haproxy
 
+- name: Add haproxy A records
+  include_role:
+    name: dns_record
+    tasks_from: add_dns_records
+  vars:
+    record: "lb-{{server_index + 1}}"
+    value: "{{ item }}"
+    type: "CNAME"
+  loop: "{{ groups['haproxy_servers'] }}"
+  loop_control:
+    index_var: server_index
+
 - name: Add haproxy configuration
   template:
     src: haproxy.cfg.j2
@@ -31,15 +43,3 @@
     dest: /etc/default/prometheus-haproxy-exporter
     src: prometheus-haproxy-exporter
   notify: Restart prometheus-haproxy-exporter
-
-- name: Add haproxy A records
-  include_role:
-    name: dns_record
-    tasks_from: add_dns_records
-  vars:
-    record: "lb-{{server_index + 1}}"
-    value: "{{ item }}"
-    type: "CNAME"
-  loop: "{{ groups['haproxy_servers'] }}"
-  loop_control:
-    index_var: server_index

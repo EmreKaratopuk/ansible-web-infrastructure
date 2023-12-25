@@ -1,4 +1,4 @@
-# for mysql, agama and uwsgi
+# MySQL
 
 mysql_host: EmreKaratopuk-1
 mysql_database: agama
@@ -11,10 +11,36 @@ mysql_password: !vault |
           6233333066376438300a656266356533656261386535396332643564373836666131376237386632
           6534
 
+
+mysql_exporter_user: mysql_exporter
+mysql_exporter_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          32643761333037356238346239383532393833353861353461636561316332393034376661363137
+          3139393536653761333939316565636538313235356563330a386565346530353130613434613462
+          65316362376630376530383832306361356464303439303831623661333463323731623137663038
+          3065663330346438660a656530666638376133653263636537626137333063656265333230373938
+          63306336353762336338393534643738343466376361353961613139633836393635
+
+node_id: "{{ (ansible_port / 100) | int }}"
+mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
+
+
+# Replica
+
+mysql_replication_username: replication
+mysql_replication_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          33616434356631666165663534643133626537316466356636303962373432636131386464633835
+          6531336663336331323031313064366165353538393138650a353532633736396664393865646636
+          38383833623566393262393434376437616531343233646663363462366439623764653735653039
+          3036353234326331630a373532653364323032616465363438353333353335666162653835636134
+          6364
+
+
+# Backup
+
 backup_server_ip: 192.168.42.132
 backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-
-# backup process credentials
 
 mysql_backup_user: backup
 mysql_backup_password: !vault |
@@ -25,12 +51,30 @@ mysql_backup_password: !vault |
           6165363233663638610a656336393363646536353562336338643065653666663061373862353334
           3865
 
-# grafana settings
+
+# Grafana
+
 grafana_port: 3001
 
+grafana_user: EmreKaratopuk
+grafana_user_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          32346432646238333666393833373433363365323538383465633037656264383734356536383266
+          3933383735353661373332323464666438333031323932610a393535323239323235663336653732
+          39636664386432356663626137663361346233303034643133303266656533636638353965313137
+          6135616263653063390a613438633331383935333438366139336664643938396566666338333962
+          3063
+
+
 # dns
+
 domain_name: istikbal.ek
 reverse_domain_name: 168.192.in-addr.arpa
+
+forwarders_list:
+  - 1.1.1.1
+  - 8.8.8.8
+  - 9.9.9.9
 
 dns_transfer_secret: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -59,6 +103,37 @@ agama_port: 8001
 
 # keepalived
 prioritized_keepalived: EmreKaratopuk-1
+
+# Prometheus
+
+jobs_list:
+  - name: linux
+    target_port: 9100
+    target_group: all
+
+  - name: bind9
+    target_port: 9119
+    target_group: bind_servers
+
+  - name: mysql
+    target_port: 9104
+    target_group: db_servers
+
+  - name: nginx
+    target_port: 9113
+    target_group: nginx_servers
+
+  - name: influxdb
+    target_port: 9424
+    target_group: influxdb_servers
+
+  - name: haproxy
+    target_port: 9101
+    target_group: haproxy_servers
+
+  - name: keepalived
+    target_port: 9165
+    target_group: keepalived_servers
 
 # prometheus-haproxy-exporter
 haproxy_exporter_port: 9188 
