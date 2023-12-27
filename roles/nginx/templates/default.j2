@@ -2,7 +2,7 @@ server {
 	listen 80 default_server;
 	server_name _;
 
-    {% if inventory_hostname in groups['grafana_servers'] %}
+    {% if inventory_hostname == internal_nginx_host %}
 
 	location /prometheus {
 		proxy_pass http://localhost:9090;

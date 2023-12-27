@@ -25,7 +25,7 @@ vrrp_instance VI_1 {
         {{ first_second_ip_octet | join('.')}}.{{ third_ip_octet | int + 58 }}.{{ fourth_ip_octet }}/{{ ip_prefix }}
     }
     unicast_peer {
-        {% for vm in groups['all'] %}
+        {% for vm in groups['keepalived_servers'] %}
 
         {% if vm != inventory_hostname  %}
 

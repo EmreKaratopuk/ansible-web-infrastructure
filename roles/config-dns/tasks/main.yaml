@@ -4,6 +4,7 @@
   service:
     name: systemd-resolved
     state: stopped
+    enabled: false
 
 - name: Change resolv.conf content
   template:

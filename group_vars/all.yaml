@@ -66,7 +66,7 @@ grafana_user_password: !vault |
           3063
 
 
-# dns
+# DNS
 
 domain_name: istikbal.ek
 reverse_domain_name: 168.192.in-addr.arpa
@@ -139,7 +139,7 @@ jobs_list:
 haproxy_exporter_port: 9188 
 
 # nginx
-nginx_main_host: EmreKaratopuk-1
+internal_nginx_host: EmreKaratopuk-3
 
 # docker
 agama_per_vm: 3

@@ -1,11 +1,16 @@
+- name: Create influxdb directory 
+  file:
+    path: /opt/influxdb
+    state: directory
+
 - name: Download influxdb
   get_url:
    url: "https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb"
-   dest: "/tmp/influxdb_1.8.10_amd64.deb"
+   dest: "/opt/influxdb/influxdb_1.8.10_amd64.deb"
 
 - name: Install influxdb
   apt:
-   deb: "/tmp/influxdb_1.8.10_amd64.deb"
+   deb: "/opt/influxdb/influxdb_1.8.10_amd64.deb"
 
 - name: Configure influxdb
   copy:

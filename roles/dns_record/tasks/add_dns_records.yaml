@@ -1,4 +1,4 @@
-- name: Add A record
+- name: Add DNS record
   community.general.nsupdate:
     key_algorithm: "hmac-sha256" 
     key_name: "nsupdate.key"
