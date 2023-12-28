@@ -10,7 +10,7 @@ The purpose of this document is to explain the procedures that must be followed 
 
 This ansible repository is used to configure targeted virtual machines, that are listed in the `hosts` file. For starting the vm configuration process, `ansible-playbook infra.yaml` command can be executed.
 
-The `mysql` and `influxdb` roles include tasks to initiate periodic backups, which can be found in `roles > mysql > files > cron-mysql-backup` and `roles > influxdb > files > cron-influxdb-backup`. The periodic `mysql` task exports the content in `agama` database while `influxdb` task exports data in the `telegraf` database. The backup processes create two different backup types, `full` and `incremental`.
+The `mysql` and `influxdb` roles include tasks to initiate periodic backups, which can be found in `roles > mysql > templates > cron-mysql-backup` and `roles > influxdb > files > cron-influxdb-backup`. The periodic `mysql` task exports the content in `agama` database while `influxdb` task exports data in the `telegraf` database. The backup processes create two different backup types, `full` and `incremental`.
 
 ### MySQL and InfluxDB Dump 
 * MySQL dump works on: `everyday at 20.e00 UTC`
@@ -39,7 +39,7 @@ Full backups are stored in the backup server and in the same location as their a
 
 * If the recovery files already exist in the `/home/backup/restore/*` destination directories, copying the backup data from the backup server will fail. Thus make sure that recovery files do not exist in the destination directories.
 
-* If the vms were configured around 15 minutes ago, the step copying the backup data from the backup server may show an error indicating the backup server cannot identify the connecting machine thus cannot establish a connection. This is because the newly created public ssh key in the second vm have not been copied to the backup server. This problem would be resolved once the lecture bot copies the public key to the `authorized_keys` file in the backup server. The expected problem resolution time is approximately 20 minutes.
+* If the vms were configured around 15 minutes ago, an attempt of copying the backup data from the backup server may show an error indicating the backup server cannot identify the connecting machine thus cannot establish a connection. This is because the newly created public ssh keys in vms have not been copied to the backup server. This problem would be resolved once the lecture bot copies the public key to the `authorized_keys` file in the backup server. The expected problem resolution time is approximately 30 minutes.
 
 ## MySQL Recovery Steps
 
@@ -78,6 +78,10 @@ In the end of these steps, the mysql data should be recovered successfully. This
 * Restore `influxdb` data:
     ```bash
     sudo influxd restore -portable -database telegraf /home/backup/restore/influxdb
+    ```
+* Start the `telegraf service`. This can be done by running this playbook as well. Command for manually starting:
+    ```bash
+    service telegraf start
     ```
 
 You may get these errors while restoring the database: 
