@@ -1,6 +1,6 @@
-EmreKaratopuk-1 ansible_host=193.40.156.67 ansible_port=27022 ansible_user=ubuntu
-EmreKaratopuk-2 ansible_host=193.40.156.67 ansible_port=30722 ansible_user=ubuntu
-EmreKaratopuk-3 ansible_host=193.40.156.67 ansible_port=31322 ansible_user=ubuntu
+EmreKaratopuk-1 ansible_host=193.40.156.67 ansible_port=29122 ansible_user=ubuntu
+EmreKaratopuk-2 ansible_host=193.40.156.67 ansible_port=43822 ansible_user=ubuntu
+EmreKaratopuk-3 ansible_host=193.40.156.67 ansible_port=40622 ansible_user=ubuntu
 
 [db_servers]
 EmreKaratopuk-1

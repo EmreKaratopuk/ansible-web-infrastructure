@@ -10,12 +10,6 @@
     dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: Restart mysql
 
-- name: Start mysql service
-  ansible.builtin.service:
-    name: mysql
-    state: started
-    enabled: true
-
 # Configure mysql
 
 - name: Install python3-pymysql
@@ -93,13 +87,16 @@
 
 # configure backup process for mysql
 
-- name: Create backup directory for mysql
+- name: Create backup and restore directories for mysql
   file:
-    path: /home/backup/mysql
-    state: directory
+    path: /home/backup/{{ item }}
+    state: directory # all intermediate subdirectories will be created if they do not exist
     owner: backup
     group: backup
     mode: 0777
+  loop:
+    - mysql
+    - restore/mysql
 
 - name: Create mysql backup user
   community.mysql.mysql_user:
@@ -120,6 +117,15 @@
     group: backup
     mode: 0600
   no_log: true
+
+- name: Start mysql and prometheus services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - mysql
+    - prometheus-mysqld-exporter
 
 - name: Create scheduled mysql backup task with cron
   template:

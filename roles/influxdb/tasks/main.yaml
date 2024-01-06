@@ -39,7 +39,7 @@
 
 - name: Install telegraf from source
   apt:
-    name: telegraf
+    name: telegraf=1.28.2-1
 
 # configure telegraf
 
@@ -68,21 +68,27 @@
   systemd:
    daemon_reload: true
 
-- name: Start prometheus-influxdb-stats-exporter
+- name: Start prometheus-influxdb-stats-exporter and telegraf
   service:
-    name: prometheus-influxdb-stats-exporter.service
+    name: "{{ item }}"
     state: started
     enabled: true
+  loop:
+    - prometheus-influxdb-stats-exporter.service
+    - telegraf.service
 
 # configure backup process for influxdb
 
-- name: Create backup directory for influxdb
+- name: Create backup and restore directories for influxdb
   file:
-    path: /home/backup/influxdb
-    state: directory
+    path: /home/backup/{{ item }}
+    state: directory # all intermediate subdirectories will be created if they do not exist
     owner: backup
     group: backup
     mode: 0777
+  loop:
+    - influxdb
+    - restore/influxdb
 
 - name: Create scheduled influxdb backup task with cron
   copy:

@@ -14,9 +14,9 @@ The `mysql` and `influxdb` roles include tasks to initiate periodic backups, whi
 
 ### MySQL and InfluxDB Dump 
 * MySQL dump works on: `everyday at 20.e00 UTC`
-* MySQL dump destionation path: `/home/backup/mysql/`
+* MySQL dump destination path: `/home/backup/mysql/`
 * InfluxDB dump works on: `everyday at 21.e00 UTC`
-* InfluxDB dump destionation path: `/home/backup/influxdb`
+* InfluxDB dump destination path: `/home/backup/influxdb`
 
 The exported files are the main backup files and stored locally. These files are also used to create backups in remote destinations (backup server).
 
@@ -37,7 +37,7 @@ Full backups are stored in the backup server and in the same location as their a
 
 ## Important Notes Before Following Recovery Procedures
 
-* If the recovery files already exist in the `/home/backup/restore/*` destination directories, copying the backup data from the backup server will fail. Thus make sure that recovery files do not exist in the destination directories.
+* If the recovery files already exist in the `/home/backup/restore/*` destination directories, copying the backup data from the backup server will fail. In that case, you can use `--force` option with duplicity to overwrite existing files or delete the existing recovery files in vms **(not the ones in the backup server)**.
 
 * If the vms were configured around 15 minutes ago, an attempt of copying the backup data from the backup server may show an error indicating the backup server cannot identify the connecting machine thus cannot establish a connection. This is because the newly created public ssh keys in vms have not been copied to the backup server. This problem would be resolved once the lecture bot copies the public key to the `authorized_keys` file in the backup server. The expected problem resolution time is approximately 30 minutes.
 
@@ -68,10 +68,10 @@ In the end of these steps, the mysql data should be recovered successfully. This
 
 * Stop the `telegraf service`:
     ```bash
-    service telegraf stop
+    sudo service telegraf stop
     ```
 
-* Delete `telegragf` database from `influxdb`
+* Delete `telegraf` database from `influxdb`
     ```bash
     influx -execute 'DROP DATABASE telegraf'
     ```
@@ -81,7 +81,7 @@ In the end of these steps, the mysql data should be recovered successfully. This
     ```
 * Start the `telegraf service`. This can be done by running this playbook as well. Command for manually starting:
     ```bash
-    service telegraf start
+    sudo service telegraf start
     ```
 
 You may get these errors while restoring the database: 
@@ -93,4 +93,4 @@ It's a known issue with InfluxDB restore, therefore errors can be ignored. You j
 
 In the end of these steps, the influxdb data should be recovered successfully. This can be confirmed by checking the `Syslog` dashboard on `Grafana`.
 
-After following the reqiured recovery steps above, please execute the `ansible-playbook infra.yaml` command to avoid bugs and preserve the consistency in vms. 
+After following the required recovery steps above, please execute the `ansible-playbook infra.yaml` command to avoid bugs and preserve the consistency in vms. 
