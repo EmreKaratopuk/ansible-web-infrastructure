@@ -10,13 +10,16 @@
     dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: Restart mysql
 
+- name: Start mysql
+  meta: flush_handlers
+
 # Configure mysql
 
 - name: Install python3-pymysql
   ansible.builtin.apt:
     name: python3-pymysql
 
-- name: MySQL database
+- name: Add {{ mysql_database }} database
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
@@ -41,6 +44,9 @@
   template:
     src: exporter_my.cnf.j2
     dest: /var/lib/prometheus/.my.cnf
+    owner: prometheus
+    group: prometheus
+    mode: 0600
   no_log: true
   notify: Restart mysql-exporter
 
@@ -53,6 +59,7 @@
       MAX_USER_CONNECTIONS: 3
     priv: "*.*:PROCESS/*.*:REPLICATION CLIENT"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+  no_log: true
   notify: Restart mysql-exporter
 
 - name: Install prometheus-mysqld-exporter
@@ -74,6 +81,7 @@
     host: "%"
     priv: "*.*:REPLICATION SLAVE"
     login_unix_socket: /var/run/mysqld/mysqld.sock 
+  no_log: true
 
 - name: Configure mysql dynamic variables for replica
   community.mysql.mysql_variables:

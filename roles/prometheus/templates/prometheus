@@ -1,5 +1,5 @@
 # Set the command-line arguments to pass to the server.
-ARGS="--web.external-url=http://{{ hostvars['EmreKaratopuk-2']['ansible_default_ipv4']['address'] | ansible.utils.ipmath(58) }}/prometheus"
+ARGS="--web.external-url=http://EmreKaratopuk-3/prometheus"
 
 # Prometheus supports the following options:
 #  --config.file="/etc/prometheus/prometheus.yml"

@@ -2,7 +2,6 @@
   apt:
     name: prometheus
 
-
 # add prefix web.external-url... to get a correct redirection url from http://.../prometheus
 - name: Adjust Prometheus service
   template:
@@ -15,6 +14,12 @@
     src: prometheus.yml
     dest: /etc/prometheus/prometheus.yml
   notify: Restart Prometheus
+
+- name: Start prometheus
+  service:
+    name: prometheus
+    state: started
+    enabled: true
 
 - name: Add prometheus A record
   include_role:

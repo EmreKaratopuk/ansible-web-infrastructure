@@ -32,6 +32,7 @@
   copy:
     src: pinger.conf
     dest: /etc/pinger/pinger.conf
+  notify: Restart pinger
 
 - name: Start pinger
   service:
