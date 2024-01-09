@@ -14,7 +14,6 @@
 - name: Install prometheus-nginx-exporter
   apt:
     name: prometheus-nginx-exporter
-  notify: Restart nginx-exporter
 
 - name: Start nginx and exporter
   ansible.builtin.service:
