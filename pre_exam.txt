@@ -1,4 +1,4 @@
-Wed Dec 27 20:32:01 EET 2023
+Tue Jan  9 11:07:13 EET 2024
 + hostname
 aekar
 + ansible-playbook infra.yaml --diff
@@ -7,13 +7,13 @@ PLAY [Initial setup] ***********************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-2]
 
 TASK [init : Update APT cache] *************************************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-3]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [init : Download certificates] ********************************************
 The following packages will be upgraded:
@@ -40,6 +40,17 @@ The following NEW packages will be installed:
   moreutils prometheus-node-exporter prometheus-node-exporter-collectors
   smartmontools
 0 upgraded, 8 newly installed, 0 to remove and 264 not upgraded.
+changed: [EmreKaratopuk-3]
+The following additional packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter-collectors smartmontools
+Suggested packages:
+  gsmartcontrol smart-notifier mailx | mailutils
+The following NEW packages will be installed:
+  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
+  moreutils prometheus-node-exporter prometheus-node-exporter-collectors
+  smartmontools
+0 upgraded, 8 newly installed, 0 to remove and 264 not upgraded.
 changed: [EmreKaratopuk-2]
 The following additional packages will be installed:
   libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
@@ -52,17 +63,6 @@ The following NEW packages will be installed:
   smartmontools
 0 upgraded, 8 newly installed, 0 to remove and 264 not upgraded.
 changed: [EmreKaratopuk-1]
-The following additional packages will be installed:
-  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
-  moreutils prometheus-node-exporter-collectors smartmontools
-Suggested packages:
-  gsmartcontrol smart-notifier mailx | mailutils
-The following NEW packages will be installed:
-  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
-  moreutils prometheus-node-exporter prometheus-node-exporter-collectors
-  smartmontools
-0 upgraded, 8 newly installed, 0 to remove and 264 not upgraded.
-changed: [EmreKaratopuk-3]
 
 TASK [init : Modify rsyslog conf file] *****************************************
 --- before
@@ -76,7 +76,7 @@ TASK [init : Modify rsyslog conf file] *****************************************
 +*.* @influxdb:6514;RSYSLOG_SyslogProtocol23Format
 \ No newline at end of file
 
-changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-3]
 --- before
 +++ after: /home/starlord/taltech/ica0002/roles/init/files/rsyslog-tel.conf
 @@ -0,0 +1,6 @@
@@ -88,7 +88,7 @@ changed: [EmreKaratopuk-1]
 +*.* @influxdb:6514;RSYSLOG_SyslogProtocol23Format
 \ No newline at end of file
 
-changed: [EmreKaratopuk-3]
+changed: [EmreKaratopuk-1]
 --- before
 +++ after: /home/starlord/taltech/ica0002/roles/init/files/rsyslog-tel.conf
 @@ -0,0 +1,6 @@
@@ -103,22 +103,13 @@ changed: [EmreKaratopuk-3]
 changed: [EmreKaratopuk-2]
 
 TASK [init : Create backup user] ***********************************************
+changed: [EmreKaratopuk-3]
 changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
-changed: [EmreKaratopuk-3]
 
 TASK [init : Add backup server to known hosts] *********************************
 --- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpr1qf9f35/known_hosts
-@@ -0,0 +1,3 @@
-+192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-+backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-+backup.istikbal.ek ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-\ No newline at end of file
-
-changed: [EmreKaratopuk-1]
---- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpem5wogdw/known_hosts
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmprxqgecvy/known_hosts
 @@ -0,0 +1,3 @@
 +192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 +backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
@@ -127,7 +118,7 @@ changed: [EmreKaratopuk-1]
 
 changed: [EmreKaratopuk-3]
 --- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmph10ieogx/known_hosts
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp7h51i1ki/known_hosts
 @@ -0,0 +1,3 @@
 +192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 +backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
@@ -135,6 +126,15 @@ changed: [EmreKaratopuk-3]
 \ No newline at end of file
 
 changed: [EmreKaratopuk-2]
+--- before
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp25ouwh55/known_hosts
+@@ -0,0 +1,3 @@
++192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
++backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
++backup.istikbal.ek ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
+\ No newline at end of file
+
+changed: [EmreKaratopuk-1]
 
 TASK [init : Create restore directory] *****************************************
 --- before
@@ -152,6 +152,22 @@ TASK [init : Create restore directory] *****************************************
 +    "state": "directory"
  }
 
+changed: [EmreKaratopuk-2]
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0777",
++    "owner": 34,
+     "path": "/home/backup/restore",
+-    "state": "absent"
++    "state": "directory"
+ }
+
 changed: [EmreKaratopuk-1]
 --- before
 +++ after
@@ -169,22 +185,6 @@ changed: [EmreKaratopuk-1]
  }
 
 changed: [EmreKaratopuk-3]
---- before
-+++ after
-@@ -1,7 +1,7 @@
- {
--    "group": 0,
--    "mode": "0755",
--    "owner": 0,
-+    "group": 34,
-+    "mode": "0777",
-+    "owner": 34,
-     "path": "/home/backup/restore",
--    "state": "absent"
-+    "state": "directory"
- }
-
-changed: [EmreKaratopuk-2]
 
 TASK [init : Install duplicity] ************************************************
 The following additional packages will be installed:
@@ -208,7 +208,7 @@ The following NEW packages will be installed:
   duplicity librsync2 python3-bcrypt python3-fasteners python3-future
   python3-lockfile python3-monotonic python3-paramiko
 0 upgraded, 8 newly installed, 0 to remove and 264 not upgraded.
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 The following additional packages will be installed:
   librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
   python3-monotonic python3-paramiko
@@ -219,13 +219,13 @@ The following NEW packages will be installed:
   duplicity librsync2 python3-bcrypt python3-fasteners python3-future
   python3-lockfile python3-monotonic python3-paramiko
 0 upgraded, 8 newly installed, 0 to remove and 264 not upgraded.
-changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
 
 TASK [init : Install dnspython] ************************************************
 The following NEW packages will be installed:
   python3-dnspython
 0 upgraded, 1 newly installed, 0 to remove and 264 not upgraded.
-changed: [EmreKaratopuk-3]
+changed: [EmreKaratopuk-2]
 The following NEW packages will be installed:
   python3-dnspython
 0 upgraded, 1 newly installed, 0 to remove and 264 not upgraded.
@@ -233,7 +233,7 @@ changed: [EmreKaratopuk-1]
 The following NEW packages will be installed:
   python3-dnspython
 0 upgraded, 1 newly installed, 0 to remove and 264 not upgraded.
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-3]
 
 RUNNING HANDLER [init : Restart rsyslog] ***************************************
 changed: [EmreKaratopuk-3]
@@ -243,8 +243,8 @@ changed: [EmreKaratopuk-2]
 PLAY [Bind server] *************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [bind : Install bind9] ****************************************************
@@ -267,7 +267,7 @@ The following NEW packages will be installed:
 The following packages will be upgraded:
   bind9-dnsutils bind9-libs
 2 upgraded, 4 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-3]
 The following additional packages will be installed:
   bind9-dnsutils bind9-libs bind9-utils dns-root-data python3-ply
 Suggested packages:
@@ -277,18 +277,18 @@ The following NEW packages will be installed:
 The following packages will be upgraded:
   bind9-dnsutils bind9-libs
 2 upgraded, 4 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-3]
+changed: [EmreKaratopuk-2]
 
 TASK [bind : Configure bind9 files] ********************************************
-changed: [EmreKaratopuk-1] => (item=None)
 changed: [EmreKaratopuk-3] => (item=None)
+changed: [EmreKaratopuk-1] => (item=None)
 changed: [EmreKaratopuk-2] => (item=None)
 changed: [EmreKaratopuk-3] => (item=None)
 changed: [EmreKaratopuk-3]
-changed: [EmreKaratopuk-1] => (item=None)
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2] => (item=None)
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1] => (item=None)
+changed: [EmreKaratopuk-1]
 
 TASK [bind : Configure master zone] ********************************************
 skipping: [EmreKaratopuk-1] => (item=istikbal.ek) 
@@ -296,7 +296,7 @@ skipping: [EmreKaratopuk-1] => (item=168.192.in-addr.arpa)
 skipping: [EmreKaratopuk-2] => (item=istikbal.ek) 
 skipping: [EmreKaratopuk-2] => (item=168.192.in-addr.arpa) 
 --- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpeh6m1bwa/istikbal.ek.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp2t0lg62h/istikbal.ek.j2
 @@ -0,0 +1,16 @@
 +$TTL	604800
 +istikbal.ek.	IN	SOA	vm1.istikbal.ek. alikar.istikbal.ek. (
@@ -310,14 +310,14 @@ skipping: [EmreKaratopuk-2] => (item=168.192.in-addr.arpa)
 +istikbal.ek.	IN	NS	EmreKaratopuk-1
 +istikbal.ek.	IN	NS	EmreKaratopuk-2
 +
-+EmreKaratopuk-1	IN	A	192.168.42.131
-+EmreKaratopuk-2	IN	A	192.168.42.112
-+EmreKaratopuk-3	IN	A	192.168.42.142
++EmreKaratopuk-1	IN	A	192.168.42.173
++EmreKaratopuk-2	IN	A	192.168.42.47
++EmreKaratopuk-3	IN	A	192.168.42.31
 +
 
 changed: [EmreKaratopuk-3] => (item=istikbal.ek)
 --- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpepf9fhai/168.192.in-addr.arpa.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpw67m0yy6/168.192.in-addr.arpa.j2
 @@ -0,0 +1,19 @@
 +$TTL	604800
 +168.192.in-addr.arpa.	IN	SOA	vm1.168.192.in-addr.arpa. alikar.168.192.in-addr.arpa. (
@@ -331,17 +331,21 @@ changed: [EmreKaratopuk-3] => (item=istikbal.ek)
 +168.192.in-addr.arpa.	IN	NS	EmreKaratopuk-1
 +168.192.in-addr.arpa.	IN	NS	EmreKaratopuk-2
 +
-+EmreKaratopuk-1	IN	A	192.168.42.131
-+EmreKaratopuk-2	IN	A	192.168.42.112
-+EmreKaratopuk-3	IN	A	192.168.42.142
++EmreKaratopuk-1	IN	A	192.168.42.173
++EmreKaratopuk-2	IN	A	192.168.42.47
++EmreKaratopuk-3	IN	A	192.168.42.31
 +
-+131.42	IN	PTR	EmreKaratopuk-1.istikbal.ek.
-+112.42	IN	PTR	EmreKaratopuk-2.istikbal.ek.
-+142.42	IN	PTR	EmreKaratopuk-3.istikbal.ek.
++173.42	IN	PTR	EmreKaratopuk-1.istikbal.ek.
++47.42	IN	PTR	EmreKaratopuk-2.istikbal.ek.
++31.42	IN	PTR	EmreKaratopuk-3.istikbal.ek.
 
 changed: [EmreKaratopuk-3] => (item=168.192.in-addr.arpa)
 
 TASK [bind : Install prometheus-bind-exporter] *********************************
+The following NEW packages will be installed:
+  prometheus-bind-exporter
+0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
+changed: [EmreKaratopuk-3]
 The following NEW packages will be installed:
   prometheus-bind-exporter
 0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
@@ -350,18 +354,14 @@ The following NEW packages will be installed:
   prometheus-bind-exporter
 0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
 changed: [EmreKaratopuk-1]
-The following NEW packages will be installed:
-  prometheus-bind-exporter
-0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-3]
 
 TASK [bind : Start bind9 and exporter] *****************************************
 ok: [EmreKaratopuk-3] => (item=bind9)
-ok: [EmreKaratopuk-1] => (item=bind9)
 ok: [EmreKaratopuk-2] => (item=bind9)
+ok: [EmreKaratopuk-1] => (item=bind9)
 ok: [EmreKaratopuk-3] => (item=prometheus-bind-exporter)
-ok: [EmreKaratopuk-1] => (item=prometheus-bind-exporter)
 ok: [EmreKaratopuk-2] => (item=prometheus-bind-exporter)
+ok: [EmreKaratopuk-1] => (item=prometheus-bind-exporter)
 
 TASK [bind : Run handlers] *****************************************************
 
@@ -402,18 +402,18 @@ changed: [EmreKaratopuk-3] => (item=EmreKaratopuk-3)
 PLAY [Configure DNS settings for both] *****************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [config-dns : Stop systemd-resolved] **************************************
+changed: [EmreKaratopuk-2]
 changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-3]
-changed: [EmreKaratopuk-2]
 
 TASK [config-dns : Change resolv.conf content] *********************************
 --- before: /etc/resolv.conf
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpugggfbya/resolv.conf.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp0eo0xvka/resolv.conf.j2
 @@ -1,19 +1,3 @@
 -# This file is managed by man:systemd-resolved(8). Do not edit.
 -#
@@ -435,12 +435,39 @@ TASK [config-dns : Change resolv.conf content] *********************************
 -options edns0 trust-ad
 -search openstacklocal
 +search istikbal.ek
-+nameserver 192.168.42.131
-+nameserver 192.168.42.112
++nameserver 192.168.42.173
++nameserver 192.168.42.47
+
+changed: [EmreKaratopuk-2]
+--- before: /etc/resolv.conf
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpo1zeq87u/resolv.conf.j2
+@@ -1,19 +1,3 @@
+-# This file is managed by man:systemd-resolved(8). Do not edit.
+-#
+-# This is a dynamic resolv.conf file for connecting local clients to the
+-# internal DNS stub resolver of systemd-resolved. This file lists all
+-# configured search domains.
+-#
+-# Run "resolvectl status" to see details about the uplink DNS servers
+-# currently in use.
+-#
+-# Third party programs must not access this file directly, but only through the
+-# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+-# replace this symlink by a static file or a different symlink.
+-#
+-# See man:systemd-resolved.service(8) for details about the supported modes of
+-# operation for /etc/resolv.conf.
+-
+-nameserver 127.0.0.53
+-options edns0 trust-ad
+-search openstacklocal
++search istikbal.ek
++nameserver 192.168.42.173
++nameserver 192.168.42.47
 
 changed: [EmreKaratopuk-3]
 --- before: /etc/resolv.conf
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpp8124e_x/resolv.conf.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpnrjp0m51/resolv.conf.j2
 @@ -1,19 +1,3 @@
 -# This file is managed by man:systemd-resolved(8). Do not edit.
 -#
@@ -462,37 +489,10 @@ changed: [EmreKaratopuk-3]
 -options edns0 trust-ad
 -search openstacklocal
 +search istikbal.ek
-+nameserver 192.168.42.131
-+nameserver 192.168.42.112
++nameserver 192.168.42.173
++nameserver 192.168.42.47
 
 changed: [EmreKaratopuk-1]
---- before: /etc/resolv.conf
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmp77du51qv/resolv.conf.j2
-@@ -1,19 +1,3 @@
--# This file is managed by man:systemd-resolved(8). Do not edit.
--#
--# This is a dynamic resolv.conf file for connecting local clients to the
--# internal DNS stub resolver of systemd-resolved. This file lists all
--# configured search domains.
--#
--# Run "resolvectl status" to see details about the uplink DNS servers
--# currently in use.
--#
--# Third party programs must not access this file directly, but only through the
--# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
--# replace this symlink by a static file or a different symlink.
--#
--# See man:systemd-resolved.service(8) for details about the supported modes of
--# operation for /etc/resolv.conf.
--
--nameserver 127.0.0.53
--options edns0 trust-ad
--search openstacklocal
-+search istikbal.ek
-+nameserver 192.168.42.131
-+nameserver 192.168.42.112
-
-changed: [EmreKaratopuk-2]
 
 PLAY [Prometheus server] *******************************************************
 
@@ -519,11 +519,11 @@ changed: [EmreKaratopuk-3]
 
 TASK [prometheus : Adjust Prometheus service] **********************************
 --- before: /etc/default/prometheus
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpjgi1_441/prometheus
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpwzrt6ddf/prometheus
 @@ -1,5 +1,5 @@
  # Set the command-line arguments to pass to the server.
 -ARGS=""
-+ARGS="--web.external-url=http://192.168.42.170/prometheus"
++ARGS="--web.external-url=http://EmreKaratopuk-3/prometheus"
  
  # Prometheus supports the following options:
  #  --config.file="/etc/prometheus/prometheus.yml"
@@ -539,7 +539,7 @@ changed: [EmreKaratopuk-3]
 
 TASK [prometheus : Add data source VMs] ****************************************
 --- before: /etc/prometheus/prometheus.yml
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpfz6hg8r5/prometheus.yml
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpsd9xc7pe/prometheus.yml
 @@ -32,6 +32,7 @@
      scrape_timeout: 5s
  
@@ -619,6 +619,9 @@ TASK [prometheus : Add data source VMs] ****************************************
 
 changed: [EmreKaratopuk-3]
 
+TASK [prometheus : Start prometheus] *******************************************
+ok: [EmreKaratopuk-3]
+
 TASK [Add prometheus A record] *************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
@@ -630,8 +633,8 @@ changed: [EmreKaratopuk-3]
 PLAY [Database server] *********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Install mysql] ***************************************************
 The following additional packages will be installed:
@@ -651,7 +654,7 @@ The following NEW packages will be installed:
   mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server
   mysql-server-8.0 mysql-server-core-8.0
 0 upgraded, 24 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
 The following additional packages will be installed:
   libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libevent-core-2.1-7
   libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
@@ -669,11 +672,11 @@ The following NEW packages will be installed:
   mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server
   mysql-server-8.0 mysql-server-core-8.0
 0 upgraded, 24 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [mysql : Listen public] ***************************************************
 --- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpy4_9dpe4/override.cnf.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp5uh28lzs/override.cnf.j2
 @@ -0,0 +1,7 @@
 +[mysqld]
 +bind-address = 0.0.0.0
@@ -681,27 +684,29 @@ TASK [mysql : Listen public] ***************************************************
 +log-bin = /var/log/mysql/mysql-bin.log
 +relay-log = /var/log/mysql/mysql-relay.log
 +replicate-do-db = agama
-+server-id = 112
-\ No newline at end of file
-
-changed: [EmreKaratopuk-2]
---- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpllvbzcdy/override.cnf.j2
-@@ -0,0 +1,7 @@
-+[mysqld]
-+bind-address = 0.0.0.0
-+
-+log-bin = /var/log/mysql/mysql-bin.log
-+relay-log = /var/log/mysql/mysql-relay.log
-+replicate-do-db = agama
-+server-id = 131
++server-id = 173
 \ No newline at end of file
 
 changed: [EmreKaratopuk-1]
+--- before
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpuzu88xvz/override.cnf.j2
+@@ -0,0 +1,7 @@
++[mysqld]
++bind-address = 0.0.0.0
++
++log-bin = /var/log/mysql/mysql-bin.log
++relay-log = /var/log/mysql/mysql-relay.log
++replicate-do-db = agama
++server-id = 47
+\ No newline at end of file
 
-TASK [mysql : Start mysql service] *********************************************
-ok: [EmreKaratopuk-2]
-ok: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
+
+TASK [mysql : Start mysql] *****************************************************
+
+RUNNING HANDLER [mysql : Restart mysql] ****************************************
+changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [mysql : Install python3-pymysql] *****************************************
 Suggested packages:
@@ -709,29 +714,29 @@ Suggested packages:
 The following NEW packages will be installed:
   python3-pymysql
 0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 Suggested packages:
   python-pymysql-doc
 The following NEW packages will be installed:
   python3-pymysql
 0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-1]
-
-TASK [mysql : MySQL database] **************************************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+
+TASK [mysql : Add agama database] **********************************************
+changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [mysql : MySQL user] ******************************************************
 changed: [EmreKaratopuk-2]
 changed: [EmreKaratopuk-1]
 
 TASK [mysql : Configure mysql exporter credentials] ****************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [mysql : Create mysql exporter user] **************************************
-changed: [EmreKaratopuk-2]
 changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
 
 TASK [mysql : Install prometheus-mysqld-exporter] ******************************
 The following additional packages will be installed:
@@ -739,13 +744,13 @@ The following additional packages will be installed:
 The following NEW packages will be installed:
   daemon prometheus-mysqld-exporter
 0 upgraded, 2 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
 The following additional packages will be installed:
   daemon
 The following NEW packages will be installed:
   daemon prometheus-mysqld-exporter
 0 upgraded, 2 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [mysql : Export replica status] *******************************************
 --- before: /etc/default/prometheus-mysqld-exporter
@@ -874,7 +879,7 @@ TASK [mysql : Export replica status] *******************************************
 +ARGS="--collect.slave_status"
 \ No newline at end of file
 
-changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
 --- before: /etc/default/prometheus-mysqld-exporter
 +++ after: /home/starlord/taltech/ica0002/roles/mysql/files/prometheus-mysqld-exporter
 @@ -1,120 +1 @@
@@ -1001,17 +1006,17 @@ changed: [EmreKaratopuk-1]
 +ARGS="--collect.slave_status"
 \ No newline at end of file
 
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [mysql : Add mysql replication user] **************************************
 changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
 
 TASK [mysql : Configure mysql dynamic variables for replica] *******************
-changed: [EmreKaratopuk-2]
 changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
 
-TASK [mysql : Create backup directory for mysql] *******************************
+TASK [mysql : Create backup and restore directories for mysql] *****************
 --- before
 +++ after
 @@ -1,7 +1,7 @@
@@ -1027,7 +1032,7 @@ TASK [mysql : Create backup directory for mysql] *******************************
 +    "state": "directory"
  }
 
-changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2] => (item=mysql)
 --- before
 +++ after
 @@ -1,7 +1,7 @@
@@ -1043,25 +1048,57 @@ changed: [EmreKaratopuk-1]
 +    "state": "directory"
  }
 
-changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1] => (item=mysql)
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0777",
++    "owner": 34,
+     "path": "/home/backup/restore/mysql",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0777",
++    "owner": 34,
+     "path": "/home/backup/restore/mysql",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [EmreKaratopuk-1] => (item=restore/mysql)
+changed: [EmreKaratopuk-2] => (item=restore/mysql)
 
 TASK [mysql : Create mysql backup user] ****************************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [mysql : Create backup user credentials to access mysql] ******************
 changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
 
+TASK [mysql : Start mysql and prometheus services] *****************************
+ok: [EmreKaratopuk-2] => (item=mysql)
+ok: [EmreKaratopuk-1] => (item=mysql)
+ok: [EmreKaratopuk-2] => (item=prometheus-mysqld-exporter)
+ok: [EmreKaratopuk-1] => (item=prometheus-mysqld-exporter)
+
 TASK [mysql : Create scheduled mysql backup task with cron] ********************
 --- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpqz0bx28c/cron-mysql-backup.j2
-@@ -0,0 +1 @@
-+
-
-changed: [EmreKaratopuk-1]
---- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpnohefvs1/cron-mysql-backup.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpj23q_61f/cron-mysql-backup.j2
 @@ -0,0 +1,4 @@
 +0 20 * * * backup mysqldump agama > /home/backup/mysql/agama.sql
 +15 20 * * 0  backup  duplicity --no-encryption full /home/backup/mysql/ rsync://EmreKaratopuk@backup.istikbal.ek/mysql --allow-source-mismatch
@@ -1069,20 +1106,22 @@ changed: [EmreKaratopuk-1]
 +
 
 changed: [EmreKaratopuk-2]
+--- before
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpqtegk8y2/cron-mysql-backup.j2
+@@ -0,0 +1 @@
++
+
+changed: [EmreKaratopuk-1]
 
 TASK [Add mysql A records] *****************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
-changed: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
+changed: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
 changed: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
-changed: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
-
-RUNNING HANDLER [mysql : Restart mysql] ****************************************
-changed: [EmreKaratopuk-2]
-changed: [EmreKaratopuk-1]
+ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 
 RUNNING HANDLER [mysql : Reset MySQL source] ***********************************
 skipping: [EmreKaratopuk-2] => (item=stopreplica) 
@@ -1136,57 +1175,578 @@ changed: [EmreKaratopuk-3]
 TASK [influxdb : Configure influxdb] *******************************************
 --- before: /etc/influxdb/influxdb.conf
 +++ after: /home/starlord/taltech/ica0002/roles/influxdb/files/influxdb.conf
-@@ -65,7 +65,7 @@
+@@ -25,21 +25,6 @@
+   # Where the metadata/raft database is stored
+   dir = "/var/lib/influxdb/meta"
  
+-  # Automatically create a default retention policy when creating a database.
+-  # retention-autocreate = true
+-
+-  # If log messages are printed for the meta service
+-  # logging-enabled = true
+-
+-###
+-### [data]
+-###
+-### Controls where the actual shard data for InfluxDB lives and how it is
+-### flushed from the WAL. "dir" may need to be changed to a suitable place
+-### for your system, but the WAL settings are an advanced configuration. The
+-### defaults should work for most systems.
+-###
+-
+ [data]
+   # The directory where the TSM storage engine stores TSM files.
+   dir = "/var/lib/influxdb/data"
+@@ -47,100 +32,9 @@
+   # The directory where the TSM storage engine stores WAL files.
+   wal-dir = "/var/lib/influxdb/wal"
+ 
+-  # The amount of time that a write will wait before fsyncing.  A duration
+-  # greater than 0 can be used to batch up multiple fsync calls.  This is useful for slower
+-  # disks or when WAL write contention is seen.  A value of 0s fsyncs every write to the WAL.
+-  # Values in the range of 0-100ms are recommended for non-SSD disks.
+-  # wal-fsync-delay = "0s"
+-
+-
+-  # The type of shard index to use for new shards.  The default is an in-memory index that is
+-  # recreated at startup.  A value of "tsi1" will use a disk based index that supports higher
+-  # cardinality datasets.
+-  # index-version = "inmem"
+-
+-  # Trace logging provides more verbose output around the tsm engine. Turning
+-  # this on can provide more useful output for debugging tsm engine issues.
+-  # trace-logging-enabled = false
+-
    # Whether queries should be logged before execution. Very useful for troubleshooting, but will
    # log any sensitive data contained within a query.
 -  # query-log-enabled = true
+-
+-  # Provides more error checking. For example, SELECT INTO will err out inserting an +/-Inf value
+-  # rather than silently failing.
+-  # strict-error-handling = false
+-
+-  # Validates incoming writes to ensure keys only have valid unicode characters.
+-  # This setting will incur a small overhead because every key must be checked.
+-  # validate-keys = false
+-
+-  # Settings for the TSM engine
+-
+-  # CacheMaxMemorySize is the maximum size a shard's cache can
+-  # reach before it starts rejecting writes.
+-  # Valid size suffixes are k, m, or g (case insensitive, 1024 = 1k).
+-  # Values without a size suffix are in bytes.
+-  # cache-max-memory-size = "1g"
+-
+-  # CacheSnapshotMemorySize is the size at which the engine will
+-  # snapshot the cache and write it to a TSM file, freeing up memory
+-  # Valid size suffixes are k, m, or g (case insensitive, 1024 = 1k).
+-  # Values without a size suffix are in bytes.
+-  # cache-snapshot-memory-size = "25m"
+-
+-  # CacheSnapshotWriteColdDuration is the length of time at
+-  # which the engine will snapshot the cache and write it to
+-  # a new TSM file if the shard hasn't received writes or deletes
+-  # cache-snapshot-write-cold-duration = "10m"
+-
+-  # CompactFullWriteColdDuration is the duration at which the engine
+-  # will compact all TSM files in a shard if it hasn't received a
+-  # write or delete
+-  # compact-full-write-cold-duration = "4h"
+-
+-  # The maximum number of concurrent full and level compactions that can run at one time.  A
+-  # value of 0 results in 50% of runtime.GOMAXPROCS(0) used at runtime.  Any number greater
+-  # than 0 limits compactions to that value.  This setting does not apply
+-  # to cache snapshotting.
+-  # max-concurrent-compactions = 0
+-
+-  # CompactThroughput is the rate limit in bytes per second that we
+-  # will allow TSM compactions to write to disk. Note that short bursts are allowed
+-  # to happen at a possibly larger value, set by CompactThroughputBurst
+-  # compact-throughput = "48m"
+-
+-  # CompactThroughputBurst is the rate limit in bytes per second that we
+-  # will allow TSM compactions to write to disk.
+-  # compact-throughput-burst = "48m"
+-
+-  # If true, then the mmap advise value MADV_WILLNEED will be provided to the kernel with respect to
+-  # TSM files. This setting has been found to be problematic on some kernels, and defaults to off.
+-  # It might help users who have slow disks in some cases.
+-  # tsm-use-madv-willneed = false
+-
+-  # Settings for the inmem index
+-
+-  # The maximum series allowed per database before writes are dropped.  This limit can prevent
+-  # high cardinality issues at the database level.  This limit can be disabled by setting it to
+-  # 0.
+-  # max-series-per-database = 1000000
+-
+-  # The maximum number of tag values per tag that are allowed before writes are dropped.  This limit
+-  # can prevent high cardinality tag values from being written to a measurement.  This limit can be
+-  # disabled by setting it to 0.
+-  # max-values-per-tag = 100000
+-
+-  # Settings for the tsi1 index
+-
+-  # The threshold, in bytes, when an index write-ahead log file will compact
+-  # into an index file. Lower sizes will cause log files to be compacted more
+-  # quickly and result in lower heap usage at the expense of write throughput.
+-  # Higher sizes will be compacted less frequently, store more series in-memory,
+-  # and provide higher write throughput.
+-  # Valid size suffixes are k, m, or g (case insensitive, 1024 = 1k).
+-  # Values without a size suffix are in bytes.
+-  # max-index-log-file-size = "1m"
 +  query-log-enabled = false
  
-   # Provides more error checking. For example, SELECT INTO will err out inserting an +/-Inf value
-   # rather than silently failing.
-@@ -266,7 +266,7 @@
-   # realm = "InfluxDB"
+   # The size of the internal cache used in the TSI index to store previously 
+   # calculated series results. Cached results will be returned quickly from the cache rather
+@@ -152,445 +46,9 @@
+   # increase in cache size may lead to an increase in heap usage.
+   series-id-set-cache-size = 100
  
+-###
+-### [coordinator]
+-###
+-### Controls the clustering service configuration.
+-###
+-
+-[coordinator]
+-  # The default time a write request will wait until a "timeout" error is returned to the caller.
+-  # write-timeout = "10s"
+-
+-  # The maximum number of concurrent queries allowed to be executing at one time.  If a query is
+-  # executed and exceeds this limit, an error is returned to the caller.  This limit can be disabled
+-  # by setting it to 0.
+-  # max-concurrent-queries = 0
+-
+-  # The maximum time a query will is allowed to execute before being killed by the system.  This limit
+-  # can help prevent run away queries.  Setting the value to 0 disables the limit.
+-  # query-timeout = "0s"
+-
+-  # The time threshold when a query will be logged as a slow query.  This limit can be set to help
+-  # discover slow or resource intensive queries.  Setting the value to 0 disables the slow query logging.
+-  # log-queries-after = "0s"
+-
+-  # The maximum number of points a SELECT can process.  A value of 0 will make
+-  # the maximum point count unlimited.  This will only be checked every second so queries will not
+-  # be aborted immediately when hitting the limit.
+-  # max-select-point = 0
+-
+-  # The maximum number of series a SELECT can run.  A value of 0 will make the maximum series
+-  # count unlimited.
+-  # max-select-series = 0
+-
+-  # The maximum number of group by time bucket a SELECT can create.  A value of zero will max the maximum
+-  # number of buckets unlimited.
+-  # max-select-buckets = 0
+-
+-###
+-### [retention]
+-###
+-### Controls the enforcement of retention policies for evicting old data.
+-###
+-
+-[retention]
+-  # Determines whether retention policy enforcement enabled.
+-  # enabled = true
+-
+-  # The interval of time when retention policy enforcement checks run.
+-  # check-interval = "30m"
+-
+-###
+-### [shard-precreation]
+-###
+-### Controls the precreation of shards, so they are available before data arrives.
+-### Only shards that, after creation, will have both a start- and end-time in the
+-### future, will ever be created. Shards are never precreated that would be wholly
+-### or partially in the past.
+-
+-[shard-precreation]
+-  # Determines whether shard pre-creation service is enabled.
+-  # enabled = true
+-
+-  # The interval of time when the check to pre-create new shards runs.
+-  # check-interval = "10m"
+-
+-  # The default period ahead of the endtime of a shard group that its successor
+-  # group is created.
+-  # advance-period = "30m"
+-
+-###
+-### Controls the system self-monitoring, statistics and diagnostics.
+-###
+-### The internal database for monitoring data is created automatically if
+-### if it does not already exist. The target retention within this database
+-### is called 'monitor' and is also created with a retention period of 7 days
+-### and a replication factor of 1, if it does not exist. In all cases the
+-### this retention policy is configured as the default for the database.
+-
+-[monitor]
+-  # Whether to record statistics internally.
+-  # store-enabled = true
+-
+-  # The destination database for recorded statistics
+-  # store-database = "_internal"
+-
+-  # The interval at which to record statistics
+-  # store-interval = "10s"
+-
+-###
+-### [http]
+-###
+-### Controls how the HTTP endpoints are configured. These are the primary
+-### mechanism for getting data into and out of InfluxDB.
+-###
+-
+ [http]
+-  # Determines whether HTTP endpoint is enabled.
+-  # enabled = true
+-
+-  # Determines whether the Flux query endpoint is enabled.
+-  # flux-enabled = false
+-
+-  # Determines whether the Flux query logging is enabled.
+-  # flux-log-enabled = false
+-
+-  # The bind address used by the HTTP service.
+-  # bind-address = ":8086"
+-
+-  # Determines whether user authentication is enabled over HTTP/HTTPS.
+-  # auth-enabled = false
+-
+-  # The default realm sent back when issuing a basic auth challenge.
+-  # realm = "InfluxDB"
+-
    # Determines whether HTTP request logging is enabled.
 -  # log-enabled = true
+-
+-  # Determines whether the HTTP write request logs should be suppressed when the log is enabled.
+-  # suppress-write-log = false
+-
+-  # When HTTP request logging is enabled, this option specifies the path where
+-  # log entries should be written. If unspecified, the default is to write to stderr, which
+-  # intermingles HTTP logs with internal InfluxDB logging.
+-  #
+-  # If influxd is unable to access the specified path, it will log an error and fall back to writing
+-  # the request log to stderr.
+-  # access-log-path = ""
+-
+-  # Filters which requests should be logged. Each filter is of the pattern NNN, NNX, or NXX where N is
+-  # a number and X is a wildcard for any number. To filter all 5xx responses, use the string 5xx.
+-  # If multiple filters are used, then only one has to match. The default is to have no filters which
+-  # will cause every request to be printed.
+-  # access-log-status-filters = []
 +  log-enabled = false
- 
-   # Determines whether the HTTP write request logs should be suppressed when the log is enabled.
-   # suppress-write-log = false
-@@ -286,7 +286,7 @@
-   # access-log-status-filters = []
  
    # Determines whether detailed write logging is enabled.
 -  # write-tracing = false
-+  write-tracing = false
- 
-   # Determines whether the pprof endpoint is enabled.  This endpoint is used for
-   # troubleshooting and monitoring.
-@@ -345,11 +345,11 @@
-   # Setting this to 0 or setting max-concurrent-write-limit to 0 disables the limit.
-   # enqueued-write-timeout = 0
- 
+-
+-  # Determines whether the pprof endpoint is enabled.  This endpoint is used for
+-  # troubleshooting and monitoring.
+-  # pprof-enabled = true
+-
+-  # Enables authentication on pprof endpoints. Users will need admin permissions
+-  # to access the pprof endpoints when this setting is enabled. This setting has
+-  # no effect if either auth-enabled or pprof-enabled are set to false.
+-  # pprof-auth-enabled = false
+-
+-  # Enables a pprof endpoint that binds to localhost:6060 immediately on startup.
+-  # This is only needed to debug startup issues.
+-  # debug-pprof-enabled = false
+-
+-  # Enables authentication on the /ping, /metrics, and deprecated /status
+-  # endpoints. This setting has no effect if auth-enabled is set to false.
+-  # ping-auth-enabled = false
+-
+-  # Determines whether HTTPS is enabled.
+-  # https-enabled = false
+-
+-  # The SSL certificate to use when HTTPS is enabled.
+-  # https-certificate = "/etc/ssl/influxdb.pem"
+-
+-  # Use a separate private key location.
+-  # https-private-key = ""
+-
+-  # The JWT auth shared secret to validate requests using JSON web tokens.
+-  # shared-secret = ""
+-
+-  # The default chunk size for result sets that should be chunked.
+-  # max-row-limit = 0
+-
+-  # The maximum number of HTTP connections that may be open at once.  New connections that
+-  # would exceed this limit are dropped.  Setting this value to 0 disables the limit.
+-  # max-connection-limit = 0
+-
+-  # Enable http service over unix domain socket
+-  # unix-socket-enabled = false
+-
+-  # The path of the unix domain socket.
+-  # bind-socket = "/var/run/influxdb.sock"
+-
+-  # The maximum size of a client request body, in bytes. Setting this value to 0 disables the limit.
+-  # max-body-size = 25000000
+-
+-  # The maximum number of writes processed concurrently.
+-  # Setting this to 0 disables the limit.
+-  # max-concurrent-write-limit = 0
+-
+-  # The maximum number of writes queued for processing.
+-  # Setting this to 0 disables the limit.
+-  # max-enqueued-write-limit = 0
+-
+-  # The maximum duration for a write to wait in the queue to be processed.
+-  # Setting this to 0 or setting max-concurrent-write-limit to 0 disables the limit.
+-  # enqueued-write-timeout = 0
+-
 -	# User supplied HTTP response headers
 -	#
 -	# [http.headers]
 -	#   X-Header-1 = "Header Value 1"
 -	#   X-Header-2 = "Header Value 2"
-+        # User supplied HTTP response headers
-+        #
-+        # [http.headers]
-+        #   X-Header-1 = "Header Value 1"
-+        #   X-Header-2 = "Header Value 2"
- 
- ###
- ### [logging]
-@@ -593,4 +593,4 @@
- 
-   # Maximum version of the tls protocol that will be negotiated. If not specified, uses the
-   # default settings from Go's crypto/tls package.
+-
+-###
+-### [logging]
+-###
+-### Controls how the logger emits logs to the output.
+-###
+-
+-[logging]
+-  # Determines which log encoder to use for logs. Available options
+-  # are auto, logfmt, and json. auto will use a more a more user-friendly
+-  # output format if the output terminal is a TTY, but the format is not as
+-  # easily machine-readable. When the output is a non-TTY, auto will use
+-  # logfmt.
+-  # format = "auto"
+-
+-  # Determines which level of logs will be emitted. The available levels
+-  # are error, warn, info, and debug. Logs that are equal to or above the
+-  # specified level will be emitted.
+-  # level = "info"
+-
+-  # Suppresses the logo output that is printed when the program is started.
+-  # The logo is always suppressed if STDOUT is not a TTY.
+-  # suppress-logo = false
+-
+-###
+-### [subscriber]
+-###
+-### Controls the subscriptions, which can be used to fork a copy of all data
+-### received by the InfluxDB host.
+-###
+-
+-[subscriber]
+-  # Determines whether the subscriber service is enabled.
+-  # enabled = true
+-
+-  # The default timeout for HTTP writes to subscribers.
+-  # http-timeout = "30s"
+-
+-  # Allows insecure HTTPS connections to subscribers.  This is useful when testing with self-
+-  # signed certificates.
+-  # insecure-skip-verify = false
+-
+-  # The path to the PEM encoded CA certs file. If the empty string, the default system certs will be used
+-  # ca-certs = ""
+-
+-  # The number of writer goroutines processing the write channel.
+-  # write-concurrency = 40
+-
+-  # The number of in-flight writes buffered in the write channel.
+-  # write-buffer-size = 1000
+-
+-
+-###
+-### [[graphite]]
+-###
+-### Controls one or many listeners for Graphite data.
+-###
+-
+-[[graphite]]
+-  # Determines whether the graphite endpoint is enabled.
+-  # enabled = false
+-  # database = "graphite"
+-  # retention-policy = ""
+-  # bind-address = ":2003"
+-  # protocol = "tcp"
+-  # consistency-level = "one"
+-
+-  # These next lines control how batching works. You should have this enabled
+-  # otherwise you could get dropped metrics or poor performance. Batching
+-  # will buffer points in memory if you have many coming in.
+-
+-  # Flush if this many points get buffered
+-  # batch-size = 5000
+-
+-  # number of batches that may be pending in memory
+-  # batch-pending = 10
+-
+-  # Flush at least this often even if we haven't hit buffer limit
+-  # batch-timeout = "1s"
+-
+-  # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
+-  # udp-read-buffer = 0
+-
+-  ### This string joins multiple matching 'measurement' values providing more control over the final measurement name.
+-  # separator = "."
+-
+-  ### Default tags that will be added to all metrics.  These can be overridden at the template level
+-  ### or by tags extracted from metric
+-  # tags = ["region=us-east", "zone=1c"]
+-
+-  ### Each template line requires a template pattern.  It can have an optional
+-  ### filter before the template and separated by spaces.  It can also have optional extra
+-  ### tags following the template.  Multiple tags should be separated by commas and no spaces
+-  ### similar to the line protocol format.  There can be only one default template.
+-  # templates = [
+-  #   "*.app env.service.resource.measurement",
+-  #   # Default template
+-  #   "server.*",
+-  # ]
+-
+-###
+-### [collectd]
+-###
+-### Controls one or many listeners for collectd data.
+-###
+-
+-[[collectd]]
+-  # enabled = false
+-  # bind-address = ":25826"
+-  # database = "collectd"
+-  # retention-policy = ""
+-  #
+-  # The collectd service supports either scanning a directory for multiple types
+-  # db files, or specifying a single db file.
+-  # typesdb = "/usr/local/share/collectd"
+-  #
+-  # security-level = "none"
+-  # auth-file = "/etc/collectd/auth_file"
+-
+-  # These next lines control how batching works. You should have this enabled
+-  # otherwise you could get dropped metrics or poor performance. Batching
+-  # will buffer points in memory if you have many coming in.
+-
+-  # Flush if this many points get buffered
+-  # batch-size = 5000
+-
+-  # Number of batches that may be pending in memory
+-  # batch-pending = 10
+-
+-  # Flush at least this often even if we haven't hit buffer limit
+-  # batch-timeout = "10s"
+-
+-  # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
+-  # read-buffer = 0
+-
+-  # Multi-value plugins can be handled two ways.
+-  # "split" will parse and store the multi-value plugin data into separate measurements
+-  # "join" will parse and store the multi-value plugin as a single multi-value measurement.
+-  # "split" is the default behavior for backward compatibility with previous versions of influxdb.
+-  # parse-multivalue-plugin = "split"
+-###
+-### [opentsdb]
+-###
+-### Controls one or many listeners for OpenTSDB data.
+-###
+-
+-[[opentsdb]]
+-  # enabled = false
+-  # bind-address = ":4242"
+-  # database = "opentsdb"
+-  # retention-policy = ""
+-  # consistency-level = "one"
+-  # tls-enabled = false
+-  # certificate= "/etc/ssl/influxdb.pem"
+-
+-  # Log an error for every malformed point.
+-  # log-point-errors = true
+-
+-  # These next lines control how batching works. You should have this enabled
+-  # otherwise you could get dropped metrics or poor performance. Only points
+-  # metrics received over the telnet protocol undergo batching.
+-
+-  # Flush if this many points get buffered
+-  # batch-size = 1000
+-
+-  # Number of batches that may be pending in memory
+-  # batch-pending = 5
+-
+-  # Flush at least this often even if we haven't hit buffer limit
+-  # batch-timeout = "1s"
+-
+-###
+-### [[udp]]
+-###
+-### Controls the listeners for InfluxDB line protocol data via UDP.
+-###
+-
+-[[udp]]
+-  # enabled = false
+-  # bind-address = ":8089"
+-  # database = "udp"
+-  # retention-policy = ""
+-
+-  # InfluxDB precision for timestamps on received points ("" or "n", "u", "ms", "s", "m", "h")
+-  # precision = ""
+-
+-  # These next lines control how batching works. You should have this enabled
+-  # otherwise you could get dropped metrics or poor performance. Batching
+-  # will buffer points in memory if you have many coming in.
+-
+-  # Flush if this many points get buffered
+-  # batch-size = 5000
+-
+-  # Number of batches that may be pending in memory
+-  # batch-pending = 10
+-
+-  # Will flush at least this often even if we haven't hit buffer limit
+-  # batch-timeout = "1s"
+-
+-  # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
+-  # read-buffer = 0
+-
+-###
+-### [continuous_queries]
+-###
+-### Controls how continuous queries are run within InfluxDB.
+-###
+-
+-[continuous_queries]
+-  # Determines whether the continuous query service is enabled.
+-  # enabled = true
+-
+-  # Controls whether queries are logged when executed by the CQ service.
+-  # log-enabled = true
+-
+-  # Controls whether queries are logged to the self-monitoring data store.
+-  # query-stats-enabled = false
+-
+-  # interval for how often continuous queries will be checked if they need to run
+-  # run-interval = "1s"
+-
+-###
+-### [tls]
+-###
+-### Global configuration settings for TLS in InfluxDB.
+-###
+-
+-[tls]
+-  # Determines the available set of cipher suites. See https://golang.org/pkg/crypto/tls/#pkg-constants
+-  # for a list of available ciphers, which depends on the version of Go (use the query
+-  # SHOW DIAGNOSTICS to see the version of Go used to build InfluxDB). If not specified, uses
+-  # the default settings from Go's crypto/tls package.
+-  # ciphers = [
+-  #   "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305",
+-  #   "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305",
+-  # ]
+-
+-  # Minimum version of the tls protocol that will be negotiated. If not specified, uses the
+-  # default settings from Go's crypto/tls package.
+-  # min-version = "tls1.2"
+-
+-  # Maximum version of the tls protocol that will be negotiated. If not specified, uses the
+-  # default settings from Go's crypto/tls package.
 -  # max-version = "tls1.3"
-+  # max-version = "tls1.3"
-\ No newline at end of file
++  write-tracing = false
 
 changed: [EmreKaratopuk-3]
 
@@ -1238,10 +1798,11 @@ changed: [EmreKaratopuk-3]
 TASK [influxdb : Restart systemctl daemon] *************************************
 ok: [EmreKaratopuk-3]
 
-TASK [influxdb : Start prometheus-influxdb-stats-exporter] *********************
-changed: [EmreKaratopuk-3]
+TASK [influxdb : Start prometheus-influxdb-stats-exporter and telegraf] ********
+changed: [EmreKaratopuk-3] => (item=prometheus-influxdb-stats-exporter.service)
+changed: [EmreKaratopuk-3] => (item=telegraf.service)
 
-TASK [influxdb : Create backup directory for influxdb] *************************
+TASK [influxdb : Create backup and restore directories for influxdb] ***********
 --- before
 +++ after
 @@ -1,7 +1,7 @@
@@ -1257,7 +1818,23 @@ TASK [influxdb : Create backup directory for influxdb] *************************
 +    "state": "directory"
  }
 
-changed: [EmreKaratopuk-3]
+changed: [EmreKaratopuk-3] => (item=influxdb)
+--- before
++++ after
+@@ -1,7 +1,7 @@
+ {
+-    "group": 0,
+-    "mode": "0755",
+-    "owner": 0,
++    "group": 34,
++    "mode": "0777",
++    "owner": 34,
+     "path": "/home/backup/restore/influxdb",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [EmreKaratopuk-3] => (item=restore/influxdb)
 
 TASK [influxdb : Create scheduled influxdb backup task with cron] **************
 --- before
@@ -1298,17 +1875,6 @@ The following NEW packages will be installed:
   bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
   python3-websocket runc ubuntu-fan
 0 upgraded, 10 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-1]
-The following additional packages will be installed:
-  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
-  ubuntu-fan
-Suggested packages:
-  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
-  rinse zfs-fuse | zfsutils
-The following NEW packages will be installed:
-  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
-  python3-websocket runc ubuntu-fan
-0 upgraded, 10 newly installed, 0 to remove and 262 not upgraded.
 changed: [EmreKaratopuk-2]
 The following additional packages will be installed:
   bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
@@ -1319,13 +1885,24 @@ Suggested packages:
 The following NEW packages will be installed:
   bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
   python3-websocket runc ubuntu-fan
-0 upgraded, 10 newly installed, 0 to remove and 262 not upgraded.
+0 upgraded, 10 newly installed, 0 to remove and 263 not upgraded.
 changed: [EmreKaratopuk-3]
+The following additional packages will be installed:
+  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
+  ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
+  rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
+  python3-websocket runc ubuntu-fan
+0 upgraded, 10 newly installed, 0 to remove and 262 not upgraded.
+changed: [EmreKaratopuk-1]
 
 TASK [docker : Start docker] ***************************************************
 ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-2]
 
 PLAY [Pinger server] ***********************************************************
 
@@ -1335,7 +1912,7 @@ ok: [EmreKaratopuk-3]
 TASK [pinger : Install fping] **************************************************
 The following NEW packages will be installed:
   fping
-0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
 changed: [EmreKaratopuk-3]
 
 TASK [pinger : Create pinger user] *********************************************
@@ -1414,12 +1991,15 @@ TASK [pinger : Add pinger conf] ************************************************
 @@ -0,0 +1,3 @@
 +database_url=localhost:8086
 +database_name=pingResults
-+targets=1.1.1.1, google.com
++targets=EmreKaratopuk-1, EmreKaratopuk-2, google.com
 \ No newline at end of file
 
 changed: [EmreKaratopuk-3]
 
 TASK [pinger : Start pinger] ***************************************************
+changed: [EmreKaratopuk-3]
+
+RUNNING HANDLER [pinger : Restart pinger] **************************************
 changed: [EmreKaratopuk-3]
 
 PLAY [Grafana server] **********************************************************
@@ -4769,26 +5349,26 @@ changed: [EmreKaratopuk-2]
 TASK [agama : Download agama files] ********************************************
 changed: [EmreKaratopuk-1] => (item=agama.py)
 changed: [EmreKaratopuk-2] => (item=agama.py)
-changed: [EmreKaratopuk-1] => (item=Dockerfile)
 changed: [EmreKaratopuk-2] => (item=Dockerfile)
+changed: [EmreKaratopuk-1] => (item=Dockerfile)
 
 TASK [agama : Create agama docker image] ***************************************
-changed: [EmreKaratopuk-2]
 changed: [EmreKaratopuk-1]
+changed: [EmreKaratopuk-2]
 
 TASK [agama : Start agama docker container] ************************************
 changed: [EmreKaratopuk-2] => (item=None)
 changed: [EmreKaratopuk-1] => (item=None)
-changed: [EmreKaratopuk-1] => (item=None)
 changed: [EmreKaratopuk-2] => (item=None)
 changed: [EmreKaratopuk-1] => (item=None)
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2] => (item=None)
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1] => (item=None)
+changed: [EmreKaratopuk-1]
 
 TASK [agama : List running agama containers] ***********************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [agama : Stop unnecessary agama containers] *******************************
 
@@ -4800,7 +5380,7 @@ changed: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
 changed: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
-changed: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 PLAY [Nginx server] ************************************************************
 
@@ -4836,7 +5416,7 @@ The following NEW packages will be installed:
   libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
   libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
   libwebp6 libxpm4 nginx nginx-common nginx-core
-0 upgraded, 17 newly installed, 0 to remove and 262 not upgraded.
+0 upgraded, 17 newly installed, 0 to remove and 263 not upgraded.
 changed: [EmreKaratopuk-3]
 The following additional packages will be installed:
   fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
@@ -4855,7 +5435,7 @@ changed: [EmreKaratopuk-1]
 
 TASK [nginx : Configure nginx frontend service] ********************************
 --- before: /etc/nginx/sites-enabled/default
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmphwv2eufo/default.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp2pif0x09/default.j2
 @@ -1,91 +1,20 @@
 -##
 -# You should look at the following URL's in order to grasp a solid understanding
@@ -4962,7 +5542,7 @@ TASK [nginx : Configure nginx frontend service] ********************************
 
 changed: [EmreKaratopuk-2]
 --- before: /etc/nginx/sites-enabled/default
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpx53r6b33/default.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpwn41j9fg/default.j2
 @@ -1,91 +1,24 @@
 -##
 -# You should look at the following URL's in order to grasp a solid understanding
@@ -5073,7 +5653,7 @@ changed: [EmreKaratopuk-2]
 
 changed: [EmreKaratopuk-3]
 --- before: /etc/nginx/sites-enabled/default
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmp66489s6_/default.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp1jn1eogc/default.j2
 @@ -1,91 +1,20 @@
 -##
 -# You should look at the following URL's in order to grasp a solid understanding
@@ -5184,32 +5764,32 @@ TASK [nginx : Install prometheus-nginx-exporter] *******************************
 The following NEW packages will be installed:
   prometheus-nginx-exporter
 0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
+changed: [EmreKaratopuk-2]
+The following NEW packages will be installed:
+  prometheus-nginx-exporter
+0 upgraded, 1 newly installed, 0 to remove and 263 not upgraded.
 changed: [EmreKaratopuk-3]
 The following NEW packages will be installed:
   prometheus-nginx-exporter
 0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
 changed: [EmreKaratopuk-1]
-The following NEW packages will be installed:
-  prometheus-nginx-exporter
-0 upgraded, 1 newly installed, 0 to remove and 262 not upgraded.
-changed: [EmreKaratopuk-2]
 
 TASK [nginx : Start nginx and exporter] ****************************************
-ok: [EmreKaratopuk-1] => (item=nginx)
 ok: [EmreKaratopuk-2] => (item=nginx)
 ok: [EmreKaratopuk-3] => (item=nginx)
-changed: [EmreKaratopuk-1] => (item=prometheus-nginx-exporter)
-changed: [EmreKaratopuk-3] => (item=prometheus-nginx-exporter)
+ok: [EmreKaratopuk-1] => (item=nginx)
 changed: [EmreKaratopuk-2] => (item=prometheus-nginx-exporter)
+changed: [EmreKaratopuk-3] => (item=prometheus-nginx-exporter)
+changed: [EmreKaratopuk-1] => (item=prometheus-nginx-exporter)
 
 RUNNING HANDLER [nginx : Restart nginx] ****************************************
+changed: [EmreKaratopuk-2]
 changed: [EmreKaratopuk-3]
 changed: [EmreKaratopuk-1]
-changed: [EmreKaratopuk-2]
 
 RUNNING HANDLER [nginx : Restart nginx-exporter] *******************************
-changed: [EmreKaratopuk-3]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-3]
 changed: [EmreKaratopuk-1]
 
 PLAY [HAProxy] *****************************************************************
@@ -5240,92 +5820,15 @@ TASK [Add haproxy A records] ***************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
 changed: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
-changed: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
-changed: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
-ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
+changed: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 
 TASK [haproxy : Add haproxy configuration] *************************************
 --- before: /etc/haproxy/haproxy.cfg
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpkodwwqne/haproxy.cfg.j2
-@@ -1,34 +1,45 @@
- global
--	log /dev/log	local0
--	log /dev/log	local1 notice
--	chroot /var/lib/haproxy
--	stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
--	stats timeout 30s
--	user haproxy
--	group haproxy
--	daemon
-+        log /dev/log    local0
-+        log /dev/log    local1 notice
-+        chroot /var/lib/haproxy
-+        stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
-+        stats timeout 30s
-+        user haproxy
-+        group haproxy
-+        daemon
- 
--	# Default SSL material locations
--	ca-base /etc/ssl/certs
--	crt-base /etc/ssl/private
--
--	# See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
--        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
--        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
--        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
- 
- defaults
--	log	global
--	mode	http
--	option	httplog
--	option	dontlognull
-+        log     global
-+        mode    http
-+        option  httplog
-+        option  dontlognull
-         timeout connect 5000
-         timeout client  50000
-         timeout server  50000
--	errorfile 400 /etc/haproxy/errors/400.http
--	errorfile 403 /etc/haproxy/errors/403.http
--	errorfile 408 /etc/haproxy/errors/408.http
--	errorfile 500 /etc/haproxy/errors/500.http
--	errorfile 502 /etc/haproxy/errors/502.http
--	errorfile 503 /etc/haproxy/errors/503.http
--	errorfile 504 /etc/haproxy/errors/504.http
-+        errorfile 400 /etc/haproxy/errors/400.http
-+        errorfile 403 /etc/haproxy/errors/403.http
-+        errorfile 408 /etc/haproxy/errors/408.http
-+        errorfile 500 /etc/haproxy/errors/500.http
-+        errorfile 502 /etc/haproxy/errors/502.http
-+        errorfile 503 /etc/haproxy/errors/503.http
-+        errorfile 504 /etc/haproxy/errors/504.http
-+
-+listen my_ha_frontend
-+        bind :88
-+
-+        
-+        server vm1-0 lb-1:8001 check
-+        server vm2-0 lb-2:8001 check
-+        
-+        server vm1-1 lb-1:8002 check
-+        server vm2-1 lb-2:8002 check
-+        
-+        server vm1-2 lb-1:8003 check
-+        server vm2-2 lb-2:8003 check
-+        
-+listen stats
-+        bind :9188
-+        stats enable
-+        stats uri /status
-+        stats refresh 5s 
-
-changed: [EmreKaratopuk-1]
---- before: /etc/haproxy/haproxy.cfg
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpbnzetusq/haproxy.cfg.j2
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp0k9v6dgy/haproxy.cfg.j2
 @@ -1,34 +1,45 @@
  global
 -	log /dev/log	local0
@@ -5401,10 +5904,87 @@ changed: [EmreKaratopuk-1]
 +        stats refresh 5s 
 
 changed: [EmreKaratopuk-2]
+--- before: /etc/haproxy/haproxy.cfg
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp0pzvpbcb/haproxy.cfg.j2
+@@ -1,34 +1,45 @@
+ global
+-	log /dev/log	local0
+-	log /dev/log	local1 notice
+-	chroot /var/lib/haproxy
+-	stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+-	stats timeout 30s
+-	user haproxy
+-	group haproxy
+-	daemon
++        log /dev/log    local0
++        log /dev/log    local1 notice
++        chroot /var/lib/haproxy
++        stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
++        stats timeout 30s
++        user haproxy
++        group haproxy
++        daemon
+ 
+-	# Default SSL material locations
+-	ca-base /etc/ssl/certs
+-	crt-base /etc/ssl/private
+-
+-	# See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+-        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+-        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+-        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+ 
+ defaults
+-	log	global
+-	mode	http
+-	option	httplog
+-	option	dontlognull
++        log     global
++        mode    http
++        option  httplog
++        option  dontlognull
+         timeout connect 5000
+         timeout client  50000
+         timeout server  50000
+-	errorfile 400 /etc/haproxy/errors/400.http
+-	errorfile 403 /etc/haproxy/errors/403.http
+-	errorfile 408 /etc/haproxy/errors/408.http
+-	errorfile 500 /etc/haproxy/errors/500.http
+-	errorfile 502 /etc/haproxy/errors/502.http
+-	errorfile 503 /etc/haproxy/errors/503.http
+-	errorfile 504 /etc/haproxy/errors/504.http
++        errorfile 400 /etc/haproxy/errors/400.http
++        errorfile 403 /etc/haproxy/errors/403.http
++        errorfile 408 /etc/haproxy/errors/408.http
++        errorfile 500 /etc/haproxy/errors/500.http
++        errorfile 502 /etc/haproxy/errors/502.http
++        errorfile 503 /etc/haproxy/errors/503.http
++        errorfile 504 /etc/haproxy/errors/504.http
++
++listen my_ha_frontend
++        bind :88
++
++        
++        server vm1-0 lb-1:8001 check
++        server vm2-0 lb-2:8001 check
++        
++        server vm1-1 lb-1:8002 check
++        server vm2-1 lb-2:8002 check
++        
++        server vm1-2 lb-1:8003 check
++        server vm2-2 lb-2:8003 check
++        
++listen stats
++        bind :9188
++        stats enable
++        stats uri /status
++        stats refresh 5s 
+
+changed: [EmreKaratopuk-1]
 
 TASK [haproxy : Start HAProxy] *************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Install prometheus-haproxy-exporter] ***************************
 The following NEW packages will be installed:
@@ -5417,12 +5997,12 @@ The following NEW packages will be installed:
 changed: [EmreKaratopuk-2]
 
 TASK [haproxy : Start prometheus-haproxy-exporter] *****************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Configure prometheus-haproxy-exporter] *************************
 --- before: /etc/default/prometheus-haproxy-exporter
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpu7wox_o5/prometheus-haproxy-exporter
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmp_87n2x71/prometheus-haproxy-exporter
 @@ -2,7 +2,7 @@
  # Due to shell scaping, to pass backslashes for regexes, you need to double
  # them (\\d for \d). If running under systemd, you need to double them again
@@ -5442,7 +6022,7 @@ TASK [haproxy : Configure prometheus-haproxy-exporter] *************************
 
 changed: [EmreKaratopuk-1]
 --- before: /etc/default/prometheus-haproxy-exporter
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmphsmuaarw/prometheus-haproxy-exporter
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpblf2k42_/prometheus-haproxy-exporter
 @@ -2,7 +2,7 @@
  # Due to shell scaping, to pass backslashes for regexes, you need to double
  # them (\\d for \d). If running under systemd, you need to double them again
@@ -5467,8 +6047,8 @@ changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
 
 RUNNING HANDLER [haproxy : Restart prometheus-haproxy-exporter] ****************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 PLAY [Keepalived] **************************************************************
 
@@ -5507,8 +6087,8 @@ The following NEW packages will be installed:
 changed: [EmreKaratopuk-1]
 
 TASK [keepalived : Create keepalived_script user] ******************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [keepalived : Copy check script for keepalived] ***************************
 --- before
@@ -5530,44 +6110,8 @@ changed: [EmreKaratopuk-2]
 
 TASK [keepalived : Copy keepalived config] *************************************
 --- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpp0_qakir/keepalived.conf.j2
-@@ -0,0 +1,34 @@
-+global_defs {
-+   enable_script_security
-+   script_user keepalived_script
-+}
-+
-+vrrp_script check_haproxy {                 
-+    script "/home/keepalived_script/keepalived_script" 
-+    weight 20                              
-+    interval 1               
-+}
-+vrrp_instance VI_1 {             
-+    interface ens3
-+    virtual_router_id 51
-+    advert_int 1
-+    preempt                            
-+    
-+    priority 100
-+    
-+    virtual_ipaddress {                     
-+        192.168.100.131/24
-+    }
-+    unicast_peer {
-+        
-+                
-+        
-+        192.168.42.112
-+                    }
-+    track_script {
-+        check_haproxy
-+    }
-+}
-
-changed: [EmreKaratopuk-1]
---- before
-+++ after: /home/starlord/.ansible/tmp/ansible-local-6593qyg12e7c/tmpas3l34y4/keepalived.conf.j2
-@@ -0,0 +1,34 @@
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpus5mxt_6/keepalived.conf.j2
+@@ -0,0 +1,31 @@
 +global_defs {
 +   enable_script_security
 +   script_user keepalived_script
@@ -5587,13 +6131,13 @@ changed: [EmreKaratopuk-1]
 +    priority 90
 +    
 +    virtual_ipaddress {                     
-+        192.168.100.131/24
++        192.168.100.173/24
 +    }
 +    unicast_peer {
 +        
 +        
-+        192.168.42.131
-+        
++        192.168.42.173
++                
 +                    }
 +    track_script {
 +        check_haproxy
@@ -5601,14 +6145,50 @@ changed: [EmreKaratopuk-1]
 +}
 
 changed: [EmreKaratopuk-2]
+--- before
++++ after: /home/starlord/.ansible/tmp/ansible-local-544djynczfy/tmpqolsd79_/keepalived.conf.j2
+@@ -0,0 +1,31 @@
++global_defs {
++   enable_script_security
++   script_user keepalived_script
++}
++
++vrrp_script check_haproxy {                 
++    script "/home/keepalived_script/keepalived_script" 
++    weight 20                              
++    interval 1               
++}
++vrrp_instance VI_1 {             
++    interface ens3
++    virtual_router_id 51
++    advert_int 1
++    preempt                            
++    
++    priority 100
++    
++    virtual_ipaddress {                     
++        192.168.100.173/24
++    }
++    unicast_peer {
++        
++                
++        
++        192.168.42.47
++                    }
++    track_script {
++        check_haproxy
++    }
++}
+
+changed: [EmreKaratopuk-1]
 
 TASK [keepalived : Start keepalived] *******************************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [keepalived : Download keepalived exporter] *******************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 TASK [keepalived : Create keepalived exporter service] *************************
 --- before
@@ -5645,35 +6225,35 @@ changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
 
 TASK [keepalived : Restart systemctl daemon] ***********************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Start keepalived exporter service] **************************
-changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
+changed: [EmreKaratopuk-1]
 
 RUNNING HANDLER [keepalived : Restart keepalived] ******************************
 changed: [EmreKaratopuk-1]
 changed: [EmreKaratopuk-2]
 
 PLAY RECAP *********************************************************************
-EmreKaratopuk-1            : ok=84   changed=65   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
-EmreKaratopuk-2            : ok=84   changed=65   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
-EmreKaratopuk-3            : ok=79   changed=66   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+EmreKaratopuk-1            : ok=84   changed=64   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+EmreKaratopuk-2            : ok=84   changed=63   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+EmreKaratopuk-3            : ok=81   changed=67   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 + ansible-playbook infra.yaml --diff
 
 PLAY [Initial setup] ***********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
+ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
 
 TASK [init : Update APT cache] *************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [init : Download certificates] ********************************************
 ok: [EmreKaratopuk-3]
@@ -5686,9 +6266,9 @@ ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [init : Modify rsyslog conf file] *****************************************
-ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [init : Create backup user] ***********************************************
 ok: [EmreKaratopuk-1]
@@ -5701,9 +6281,9 @@ ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
 
 TASK [init : Create restore directory] *****************************************
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-1]
+ok: [EmreKaratopuk-2]
 
 TASK [init : Install duplicity] ************************************************
 ok: [EmreKaratopuk-3]
@@ -5711,16 +6291,16 @@ ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [init : Install dnspython] ************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-1]
 
 PLAY [Bind server] *************************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [bind : Install bind9] ****************************************************
 ok: [EmreKaratopuk-3]
@@ -5728,9 +6308,9 @@ ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [bind : Configure bind9 files] ********************************************
+ok: [EmreKaratopuk-1] => (item=None)
 ok: [EmreKaratopuk-3] => (item=None)
 ok: [EmreKaratopuk-2] => (item=None)
-ok: [EmreKaratopuk-1] => (item=None)
 ok: [EmreKaratopuk-3] => (item=None)
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-1] => (item=None)
@@ -5747,17 +6327,17 @@ ok: [EmreKaratopuk-3] => (item=istikbal.ek)
 ok: [EmreKaratopuk-3] => (item=168.192.in-addr.arpa)
 
 TASK [bind : Install prometheus-bind-exporter] *********************************
-ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [bind : Start bind9 and exporter] *****************************************
 ok: [EmreKaratopuk-3] => (item=bind9)
-ok: [EmreKaratopuk-1] => (item=bind9)
 ok: [EmreKaratopuk-2] => (item=bind9)
+ok: [EmreKaratopuk-1] => (item=bind9)
 ok: [EmreKaratopuk-3] => (item=prometheus-bind-exporter)
-ok: [EmreKaratopuk-1] => (item=prometheus-bind-exporter)
 ok: [EmreKaratopuk-2] => (item=prometheus-bind-exporter)
+ok: [EmreKaratopuk-1] => (item=prometheus-bind-exporter)
 
 TASK [bind : Run handlers] *****************************************************
 
@@ -5794,18 +6374,18 @@ PLAY [Configure DNS settings for both] *****************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [config-dns : Stop systemd-resolved] **************************************
-ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [config-dns : Change resolv.conf content] *********************************
+ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
-ok: [EmreKaratopuk-3]
 
 PLAY [Prometheus server] *******************************************************
 
@@ -5821,6 +6401,9 @@ ok: [EmreKaratopuk-3]
 TASK [prometheus : Add data source VMs] ****************************************
 ok: [EmreKaratopuk-3]
 
+TASK [prometheus : Start prometheus] *******************************************
+ok: [EmreKaratopuk-3]
+
 TASK [Add prometheus A record] *************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
@@ -5833,24 +6416,22 @@ ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [mysql : Install mysql] ***************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Listen public] ***************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
-TASK [mysql : Start mysql service] *********************************************
-ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
+TASK [mysql : Start mysql] *****************************************************
 
 TASK [mysql : Install python3-pymysql] *****************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
-TASK [mysql : MySQL database] **************************************************
-ok: [EmreKaratopuk-1]
+TASK [mysql : Add agama database] **********************************************
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : MySQL user] ******************************************************
 ok: [EmreKaratopuk-1]
@@ -5869,28 +6450,36 @@ ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [mysql : Export replica status] *******************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Add mysql replication user] **************************************
 ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [mysql : Configure mysql dynamic variables for replica] *******************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
-TASK [mysql : Create backup directory for mysql] *******************************
-ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
+TASK [mysql : Create backup and restore directories for mysql] *****************
+ok: [EmreKaratopuk-2] => (item=mysql)
+ok: [EmreKaratopuk-1] => (item=mysql)
+ok: [EmreKaratopuk-2] => (item=restore/mysql)
+ok: [EmreKaratopuk-1] => (item=restore/mysql)
 
 TASK [mysql : Create mysql backup user] ****************************************
 ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [mysql : Create backup user credentials to access mysql] ******************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
+
+TASK [mysql : Start mysql and prometheus services] *****************************
+ok: [EmreKaratopuk-2] => (item=mysql)
+ok: [EmreKaratopuk-1] => (item=mysql)
+ok: [EmreKaratopuk-1] => (item=prometheus-mysqld-exporter)
+ok: [EmreKaratopuk-2] => (item=prometheus-mysqld-exporter)
 
 TASK [mysql : Create scheduled mysql backup task with cron] ********************
 ok: [EmreKaratopuk-1]
@@ -5899,8 +6488,8 @@ ok: [EmreKaratopuk-2]
 TASK [Add mysql A records] *****************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
 ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
@@ -5947,11 +6536,13 @@ ok: [EmreKaratopuk-3]
 TASK [influxdb : Restart systemctl daemon] *************************************
 ok: [EmreKaratopuk-3]
 
-TASK [influxdb : Start prometheus-influxdb-stats-exporter] *********************
-ok: [EmreKaratopuk-3]
+TASK [influxdb : Start prometheus-influxdb-stats-exporter and telegraf] ********
+ok: [EmreKaratopuk-3] => (item=prometheus-influxdb-stats-exporter.service)
+ok: [EmreKaratopuk-3] => (item=telegraf.service)
 
-TASK [influxdb : Create backup directory for influxdb] *************************
-ok: [EmreKaratopuk-3]
+TASK [influxdb : Create backup and restore directories for influxdb] ***********
+ok: [EmreKaratopuk-3] => (item=influxdb)
+ok: [EmreKaratopuk-3] => (item=restore/influxdb)
 
 TASK [influxdb : Create scheduled influxdb backup task with cron] **************
 ok: [EmreKaratopuk-3]
@@ -5969,14 +6560,14 @@ ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [docker : Install docker] *************************************************
-ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
+ok: [EmreKaratopuk-3]
 
 TASK [docker : Start docker] ***************************************************
+ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
 
 PLAY [Pinger server] ***********************************************************
 
@@ -6055,18 +6646,18 @@ ok: [EmreKaratopuk-1] => (item=Dockerfile)
 ok: [EmreKaratopuk-2] => (item=Dockerfile)
 
 TASK [agama : Create agama docker image] ***************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [agama : Start agama docker container] ************************************
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-1] => (item=None)
-ok: [EmreKaratopuk-1] => (item=None)
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-1] => (item=None)
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1] => (item=None)
+ok: [EmreKaratopuk-1]
 
 TASK [agama : List running agama containers] ***********************************
 ok: [EmreKaratopuk-2]
@@ -6077,8 +6668,8 @@ TASK [agama : Stop unnecessary agama containers] *******************************
 TASK [Add agama A records] *****************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
 ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
@@ -6087,24 +6678,24 @@ ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 PLAY [Nginx server] ************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [nginx : Install nginx] ***************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [nginx : Configure nginx frontend service] ********************************
+ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-3]
 
 TASK [nginx : Install prometheus-nginx-exporter] *******************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-1]
 
 TASK [nginx : Start nginx and exporter] ****************************************
 ok: [EmreKaratopuk-3] => (item=nginx)
@@ -6127,32 +6718,32 @@ ok: [EmreKaratopuk-2]
 TASK [Add haproxy A records] ***************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 
 TASK [haproxy : Add haproxy configuration] *************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Start HAProxy] *************************************************
 ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [haproxy : Install prometheus-haproxy-exporter] ***************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Start prometheus-haproxy-exporter] *****************************
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Configure prometheus-haproxy-exporter] *************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 PLAY [Keepalived] **************************************************************
 
@@ -6169,12 +6760,12 @@ ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [keepalived : Install keepalived] *****************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Create keepalived_script user] ******************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Copy check script for keepalived] ***************************
 ok: [EmreKaratopuk-1]
@@ -6185,8 +6776,8 @@ ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Start keepalived] *******************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Download keepalived exporter] *******************************
 ok: [EmreKaratopuk-1]
@@ -6207,22 +6798,22 @@ ok: [EmreKaratopuk-2]
 PLAY RECAP *********************************************************************
 EmreKaratopuk-1            : ok=74   changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
 EmreKaratopuk-2            : ok=74   changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-EmreKaratopuk-3            : ok=71   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+EmreKaratopuk-3            : ok=72   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 + ansible all -b -m reboot -a test_command=uptime
+EmreKaratopuk-2 | CHANGED => {
+    "changed": true,
+    "elapsed": 41,
+    "rebooted": true
+}
 EmreKaratopuk-3 | CHANGED => {
     "changed": true,
-    "elapsed": 37,
+    "elapsed": 41,
     "rebooted": true
 }
 EmreKaratopuk-1 | CHANGED => {
     "changed": true,
-    "elapsed": 43,
-    "rebooted": true
-}
-EmreKaratopuk-2 | CHANGED => {
-    "changed": true,
-    "elapsed": 43,
+    "elapsed": 42,
     "rebooted": true
 }
 + ansible-playbook infra.yaml --diff
@@ -6231,18 +6822,18 @@ PLAY [Initial setup] ***********************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [init : Update APT cache] *************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [init : Download certificates] ********************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [init : Install prometheus node exporter] *********************************
 ok: [EmreKaratopuk-3]
@@ -6261,13 +6852,13 @@ ok: [EmreKaratopuk-1]
 
 TASK [init : Add backup server to known hosts] *********************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [init : Create restore directory] *****************************************
+ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-2]
 
 TASK [init : Install duplicity] ************************************************
 ok: [EmreKaratopuk-3]
@@ -6276,15 +6867,15 @@ ok: [EmreKaratopuk-1]
 
 TASK [init : Install dnspython] ************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 PLAY [Bind server] *************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [bind : Install bind9] ****************************************************
 ok: [EmreKaratopuk-3]
@@ -6293,14 +6884,14 @@ ok: [EmreKaratopuk-1]
 
 TASK [bind : Configure bind9 files] ********************************************
 ok: [EmreKaratopuk-3] => (item=None)
-ok: [EmreKaratopuk-1] => (item=None)
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-1] => (item=None)
 ok: [EmreKaratopuk-3] => (item=None)
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1] => (item=None)
+ok: [EmreKaratopuk-1]
 
 TASK [bind : Configure master zone] ********************************************
 skipping: [EmreKaratopuk-1] => (item=istikbal.ek) 
@@ -6311,16 +6902,16 @@ ok: [EmreKaratopuk-3] => (item=istikbal.ek)
 ok: [EmreKaratopuk-3] => (item=168.192.in-addr.arpa)
 
 TASK [bind : Install prometheus-bind-exporter] *********************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [bind : Start bind9 and exporter] *****************************************
-ok: [EmreKaratopuk-3] => (item=bind9)
 ok: [EmreKaratopuk-2] => (item=bind9)
 ok: [EmreKaratopuk-1] => (item=bind9)
-ok: [EmreKaratopuk-3] => (item=prometheus-bind-exporter)
+ok: [EmreKaratopuk-3] => (item=bind9)
 ok: [EmreKaratopuk-2] => (item=prometheus-bind-exporter)
+ok: [EmreKaratopuk-3] => (item=prometheus-bind-exporter)
 ok: [EmreKaratopuk-1] => (item=prometheus-bind-exporter)
 
 TASK [bind : Run handlers] *****************************************************
@@ -6357,14 +6948,14 @@ ok: [EmreKaratopuk-3] => (item=EmreKaratopuk-3)
 PLAY [Configure DNS settings for both] *****************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-1]
 
 TASK [config-dns : Stop systemd-resolved] **************************************
-ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-1]
 
 TASK [config-dns : Change resolv.conf content] *********************************
 ok: [EmreKaratopuk-2]
@@ -6385,6 +6976,9 @@ ok: [EmreKaratopuk-3]
 TASK [prometheus : Add data source VMs] ****************************************
 ok: [EmreKaratopuk-3]
 
+TASK [prometheus : Start prometheus] *******************************************
+ok: [EmreKaratopuk-3]
+
 TASK [Add prometheus A record] *************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
@@ -6393,40 +6987,38 @@ ok: [EmreKaratopuk-3] => (item=EmreKaratopuk-3)
 PLAY [Database server] *********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Install mysql] ***************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Listen public] ***************************************************
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
-TASK [mysql : Start mysql service] *********************************************
-ok: [EmreKaratopuk-2]
-ok: [EmreKaratopuk-1]
+TASK [mysql : Start mysql] *****************************************************
 
 TASK [mysql : Install python3-pymysql] *****************************************
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
-TASK [mysql : MySQL database] **************************************************
-ok: [EmreKaratopuk-1]
+TASK [mysql : Add agama database] **********************************************
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : MySQL user] ******************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Configure mysql exporter credentials] ****************************
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [mysql : Create mysql exporter user] **************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Install prometheus-mysqld-exporter] ******************************
 ok: [EmreKaratopuk-2]
@@ -6444,21 +7036,29 @@ TASK [mysql : Configure mysql dynamic variables for replica] *******************
 ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
-TASK [mysql : Create backup directory for mysql] *******************************
-ok: [EmreKaratopuk-2]
-ok: [EmreKaratopuk-1]
+TASK [mysql : Create backup and restore directories for mysql] *****************
+ok: [EmreKaratopuk-2] => (item=mysql)
+ok: [EmreKaratopuk-1] => (item=mysql)
+ok: [EmreKaratopuk-2] => (item=restore/mysql)
+ok: [EmreKaratopuk-1] => (item=restore/mysql)
 
 TASK [mysql : Create mysql backup user] ****************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [mysql : Create backup user credentials to access mysql] ******************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
+
+TASK [mysql : Start mysql and prometheus services] *****************************
+ok: [EmreKaratopuk-2] => (item=mysql)
+ok: [EmreKaratopuk-1] => (item=mysql)
+ok: [EmreKaratopuk-2] => (item=prometheus-mysqld-exporter)
+ok: [EmreKaratopuk-1] => (item=prometheus-mysqld-exporter)
 
 TASK [mysql : Create scheduled mysql backup task with cron] ********************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [Add mysql A records] *****************************************************
 
@@ -6467,8 +7067,8 @@ ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 PLAY [influxDB server] *********************************************************
 
@@ -6511,11 +7111,13 @@ ok: [EmreKaratopuk-3]
 TASK [influxdb : Restart systemctl daemon] *************************************
 ok: [EmreKaratopuk-3]
 
-TASK [influxdb : Start prometheus-influxdb-stats-exporter] *********************
-ok: [EmreKaratopuk-3]
+TASK [influxdb : Start prometheus-influxdb-stats-exporter and telegraf] ********
+ok: [EmreKaratopuk-3] => (item=prometheus-influxdb-stats-exporter.service)
+ok: [EmreKaratopuk-3] => (item=telegraf.service)
 
-TASK [influxdb : Create backup directory for influxdb] *************************
-ok: [EmreKaratopuk-3]
+TASK [influxdb : Create backup and restore directories for influxdb] ***********
+ok: [EmreKaratopuk-3] => (item=influxdb)
+ok: [EmreKaratopuk-3] => (item=restore/influxdb)
 
 TASK [influxdb : Create scheduled influxdb backup task with cron] **************
 ok: [EmreKaratopuk-3]
@@ -6539,8 +7141,8 @@ ok: [EmreKaratopuk-1]
 
 TASK [docker : Start docker] ***************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 PLAY [Pinger server] ***********************************************************
 
@@ -6605,8 +7207,8 @@ ok: [EmreKaratopuk-3] => (item=EmreKaratopuk-3)
 PLAY [Agama server] ************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [agama : Create agama volume directory] ***********************************
 ok: [EmreKaratopuk-2]
@@ -6623,88 +7225,88 @@ ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [agama : Start agama docker container] ************************************
-ok: [EmreKaratopuk-1] => (item=None)
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-1] => (item=None)
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-1] => (item=None)
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2] => (item=None)
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1] => (item=None)
+ok: [EmreKaratopuk-1]
 
 TASK [agama : List running agama containers] ***********************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [agama : Stop unnecessary agama containers] *******************************
 
 TASK [Add agama A records] *****************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 PLAY [Nginx server] ************************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [nginx : Install nginx] ***************************************************
 ok: [EmreKaratopuk-3]
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [nginx : Configure nginx frontend service] ********************************
-ok: [EmreKaratopuk-1]
-ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-3]
+ok: [EmreKaratopuk-1]
 
 TASK [nginx : Install prometheus-nginx-exporter] *******************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-3]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [nginx : Start nginx and exporter] ****************************************
-ok: [EmreKaratopuk-1] => (item=nginx)
 ok: [EmreKaratopuk-2] => (item=nginx)
 ok: [EmreKaratopuk-3] => (item=nginx)
-ok: [EmreKaratopuk-1] => (item=prometheus-nginx-exporter)
-ok: [EmreKaratopuk-3] => (item=prometheus-nginx-exporter)
+ok: [EmreKaratopuk-1] => (item=nginx)
 ok: [EmreKaratopuk-2] => (item=prometheus-nginx-exporter)
+ok: [EmreKaratopuk-3] => (item=prometheus-nginx-exporter)
+ok: [EmreKaratopuk-1] => (item=prometheus-nginx-exporter)
 
 PLAY [HAProxy] *****************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Install HAProxy] ***********************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [Add haproxy A records] ***************************************************
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
 
 TASK [dns_record : Add DNS record] *********************************************
-ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 ok: [EmreKaratopuk-1] => (item=EmreKaratopuk-3)
+ok: [EmreKaratopuk-2] => (item=EmreKaratopuk-3)
 
 TASK [haproxy : Add haproxy configuration] *************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Start HAProxy] *************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [haproxy : Install prometheus-haproxy-exporter] ***************************
 ok: [EmreKaratopuk-1]
@@ -6721,8 +7323,8 @@ ok: [EmreKaratopuk-1]
 PLAY [Keepalived] **************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : set_fact] ***************************************************
 ok: [EmreKaratopuk-1]
@@ -6733,8 +7335,8 @@ ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
 
 TASK [keepalived : Install keepalived] *****************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Create keepalived_script user] ******************************
 ok: [EmreKaratopuk-1]
@@ -6745,16 +7347,16 @@ ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Copy keepalived config] *************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Start keepalived] *******************************************
-ok: [EmreKaratopuk-1]
 ok: [EmreKaratopuk-2]
+ok: [EmreKaratopuk-1]
 
 TASK [keepalived : Download keepalived exporter] *******************************
-ok: [EmreKaratopuk-2]
 ok: [EmreKaratopuk-1]
+ok: [EmreKaratopuk-2]
 
 TASK [keepalived : Create keepalived exporter service] *************************
 ok: [EmreKaratopuk-1]
@@ -6771,7 +7373,7 @@ ok: [EmreKaratopuk-2]
 PLAY RECAP *********************************************************************
 EmreKaratopuk-1            : ok=74   changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
 EmreKaratopuk-2            : ok=74   changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
-EmreKaratopuk-3            : ok=71   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+EmreKaratopuk-3            : ok=72   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 + date
-Wed Dec 27 20:51:25 EET 2023
+Tue Jan  9 11:24:17 EET 2024
