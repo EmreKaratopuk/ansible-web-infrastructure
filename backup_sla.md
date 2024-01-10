@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This document serves as this backup policy for the Ansible repository, which includes various services such as nginx, uwsgi, bind9, agama, prometheus, pinger, grafana, mysql, and influxdb.
+This document serves as the backup policy for the Ansible repository, which includes various services such as nginx, bind9, agama, prometheus, pinger, keepalived, haproxy, grafana, mysql, and influxdb.
 
 ### Backup Coverage
 
-The backup policy covers all services mentioned above, the amount of data backed up depends on the service type. There are two different services, configurable and recoverable. Configurable services include nginx, uwsgi, bind9, agama, prometheus, pinger, and grafana, and their configuration information can be restored by running this ansible repository. The recoverable services include mysql and influxdb services, their data will be fully stored in multiple locations to ensure the integrity of these services is always preserved.
+The backup policy covers all services mentioned above, the amount of data backed up depends on the service type. There are two different services, configurable and recoverable. Configurable services include nginx, bind9, agama, prometheus, pinger, keepalived, haproxy and grafana, and their configuration information can be restored by running this ansible repository. The recoverable services include mysql and influxdb services, their data will be fully stored in multiple locations to ensure the integrity of these services is always preserved.
 
 ### Recovery Point Objective (RPO)
 
@@ -19,7 +19,7 @@ Backups will be versioned to allow for easy identification and restoration of sp
 * MySQL full backup schedule: `Every Sunday at 20.15 UTC`
 * InfluxDB full backup schedule: `Every Sunday at 21.15 UTC`
 * MySQL incremental backup schedule: `Everyday excluding Sunday at 20.20 UTC`
-* InfluxDB incremental backup schedule: `Everyday excluding  Sunday at 21.20 UTC`
+* InfluxDB incremental backup schedule: `Everyday excluding Sunday at 21.20 UTC`
 
 Backups will be preserved for 6 months to ensure a comprehensive data restoration can be performed in case of a disaster.
 

@@ -11,7 +11,10 @@
   notify: Restart mysql
 
 - name: Start mysql
-  meta: flush_handlers
+  ansible.builtin.service:
+    name: mysql
+    state: started
+    enabled: true
 
 # Configure mysql
 
